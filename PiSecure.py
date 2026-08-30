@@ -9,3 +9,5 @@ picam.configure(camera_config)
 picam.start()
 
 picam.capture_file("test_photo.jpg")
+
+print("testing 123")
