@@ -1,11 +1,11 @@
-from picamera2.outputs import FfmpegOutput
-from picamera2 import Picamera2
-import time
+# from picamera2 import Picamera2
 
-picam2 = Picamera2()
+# picam2 = Picamera2()
 
-output = FfmpegOutput("test_video.mkv")
+# picam2.start_and_record_video("test_video.mkv", duration=60)  # duration in seconds
 
-picam2.start_recording(output)
-time.sleep(60)
-picam2.stop_recording()
+from picamera import PiCamera
+
+camera = PiCamera()
+camera.resolution = (1920, 1080)
+camera.capture('test_image.jpg')
