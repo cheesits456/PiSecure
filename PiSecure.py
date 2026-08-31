@@ -10,6 +10,7 @@ for file in os.listdir("./framebuffer"):
 print("Done!")
 
 # Generate new frames for 1 minute
+print("Generating new frames . . .")
 for i in range(60):
     subprocess.run(
         f"rpicam-jpeg -n -o ./framebuffer/{i + 1}.jpeg -q 20 -t 1ms --hflip --vflip &",
@@ -18,4 +19,5 @@ for i in range(60):
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL
     )
+    print(f"Frame {i + 1} finished")
     time.sleep(1)
