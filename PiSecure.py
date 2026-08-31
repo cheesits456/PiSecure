@@ -2,7 +2,10 @@ from pprint import *
 from picamera2 import Picamera2
 
 picam = Picamera2()
+config = {"format": "SRGGB8", "size": (3280, 2464)}
 
-pprint(picam.sensor_modes)
+picam.configure(config)
 
-# picam.start_and_record_video("test_video.mp4", duration = 60 * 60)
+# pprint(picam.sensor_modes)
+
+picam.start_and_record_video("test_video.mp4", duration=60)
