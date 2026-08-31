@@ -10,7 +10,7 @@ def add_timestamp_to_image(path):
     fontFile = "./FiraCodeMono.ttf"
     fontSize = 100
     xPosition = 20
-    yPosition = 2450
+    yPosition = 2000
 
     img = Image.open(path)
     I1 = ImageDraw.Draw(img)
