@@ -5,5 +5,6 @@ picam2 = Picamera2()
 
 config = picam2.create_video_configuration({"size": (3280, 2464)}, transform=Transform(hflip=True, vflip=True))
 picam2.configure(config)
+picam2.video_configuration.controls.FrameRate = 10.0
 
 picam2.start_and_record_video("test_video.mkv", duration=60)  # duration in seconds
