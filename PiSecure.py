@@ -8,10 +8,10 @@ for file in os.listdir("./framebuffer"):
     os.remove(f"./framebuffer/{file}")
 
 # Generate new frames for 1 minute
-for i in range(2*60):  # 500ms * 2 * 60
+for i in range(1*60):
     subprocess.run(
         f"rpicam-jpeg -n -o ./framebuffer/{i+1}.jpeg -q 20 -t 1ms --hflip --vflip &",
         shell=True,
         executable="/bin/bash",
     )
-    time.sleep(0.499)
+    time.sleep(0.999)
