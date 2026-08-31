@@ -1,10 +1,13 @@
+import os
 import subprocess
 import time
 
-for i in range(10*60):  # 1 minute of footage, 100ms * 10 * 60 
-    subprocess.run(
-        f"rpicam-jpeg -n -t 1 -o ./framebuffer/{i+1}.jpeg --hflip --vflip",
-        shell=True,
-        executable="/bin/bash",
-    )
-    time.sleep(0.1)
+frames = os.listdir("./framebuffer")
+print(frames)
+
+# for i in range(10*60):  # 1 minute of footage, 100ms * 10 * 60 
+#     subprocess.run(
+#         f"rpicam-jpeg -n -t 100ms -o ./framebuffer/{i+1}.jpeg --hflip --vflip",
+#         shell=True,
+#         executable="/bin/bash",
+#     )
