@@ -9,12 +9,14 @@ def add_timestamp_to_image(path):
 
     fontFile = "./FiraCodeMono.ttf"
     fontSize = 65
+    xPosition = 20
+    yPosition = 2450
 
     img = Image.open(path)
     I1 = ImageDraw.Draw(img)
     font = ImageFont.truetype(fontFile, fontSize)
 
-    I1.text((10, 10), "2026-08-31 2:02PM", font=font, fill=(255, 255, 255))
+    I1.text((xPosition, yPosition), "2026-08-31 2:02PM", font=font, fill=(255, 255, 255))
     img.save(path)
 
 # Clear old frames first
@@ -25,7 +27,7 @@ print("Done!")
 
 # Generate new frames for 1 minute
 print("Generating new frames. . .")
-for i in range(10):
+for i in range(3):
     frameNumber = i + 1
     savePath = f"./framebuffer/{frameNumber}.jpeg"
     subprocess.run(
