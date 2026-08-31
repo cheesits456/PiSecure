@@ -35,8 +35,9 @@ def add_timestamp_to_image(path):
     )
     img = Image.alpha_composite(img, overlay)
     img = img.convert("RGB")
+    drawFinal = ImageDraw.Draw(img)
     
-    drawMain.text(
+    drawFinal.text(
         fill = (255, 255, 255),
         font = font,
         text = "2026-08-31 2:02PM",
