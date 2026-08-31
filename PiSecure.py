@@ -3,7 +3,8 @@ import subprocess
 import time
 
 frames = os.listdir("./framebuffer").sort()
-print(frames)
+for file in frames:
+    os.remove(f"./framebuffer/{file}")
 
 # for i in range(10*60):  # 1 minute of footage, 100ms * 10 * 60 
 #     subprocess.run(
