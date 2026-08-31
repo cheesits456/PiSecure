@@ -25,10 +25,9 @@ print("Done!")
 
 # Generate new frames for 1 minute
 print("Generating new frames. . .")
-for i in range(60):
+for i in range(10):
     frameNumber = i + 1
     savePath = f"./framebuffer/{frameNumber}.jpeg"
-
     subprocess.run(
         f"rpicam-jpeg -n -o {savePath} -q 20 -t 1ms --hflip --vflip &",
         executable="/bin/bash",
@@ -36,6 +35,8 @@ for i in range(60):
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL
     )
-    add_timestamp_to_image(savePath)
     print(f"Frame {frameNumber} generated")
     time.sleep(1)
+
+for file in os.listdir("./framebuffer"):
+    add_timestamp_to_image(f"./framebuffer/{file}")
