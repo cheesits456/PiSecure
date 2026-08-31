@@ -5,4 +5,4 @@ picam2 = Picamera2()
 
 # pprint(picam.sensor_modes)
 
-picam2.start_and_record_video("test_video.mkv", duration=60)
+picam2.start_and_record_video("test_video.mp4", duration=60)
