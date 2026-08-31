@@ -16,7 +16,7 @@ def add_timestamp_to_image(path):
 	image = ImageDraw.Draw(img)
 	font = ImageFont.truetype(fontFile, fontSize)
 
-	image.rectangle([(0, 2290), (1150, 2464)], "#0000007F")
+	image.rounded_rectangle([(0, 2290), (1150, 2464)], 25, "#0000007F", corners=("top_right"))
 	image.text((xPosition, yPosition), "2026-08-31 2:02PM", font=font, fill=(255, 255, 255))
 	img.save(path)
 
