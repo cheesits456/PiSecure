@@ -13,6 +13,7 @@ for i in range(60):
         f"rpicam-jpeg -n -o ./framebuffer/{i + 1}.jpeg -q 20 -t 1ms --hflip --vflip &",
         executable="/bin/bash",
         shell=True,
-        stdout=subprocess.DEVNULL
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL
     )
     time.sleep(1)
