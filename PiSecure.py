@@ -18,7 +18,7 @@ def add_timestamp_to_image(path):
     font = ImageFont.truetype(fontFile, fontSize)
 
     tintColor = (0, 0, 0)
-    transparency = .25  # 0=0%, 1=100%
+    transparency = .75  # 0=0%, 1=100%
     opacity = int(255 * transparency)
     
     overlay = Image.new(
