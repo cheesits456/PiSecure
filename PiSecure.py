@@ -4,13 +4,13 @@ import threading
 import time
 
 # Clear old frames first
-print("Clearing old frames . . .")
+print("Clearing old frames. . .")
 for file in os.listdir("./framebuffer"):
     os.remove(f"./framebuffer/{file}")
 print("Done!")
 
 # Generate new frames for 1 minute
-print("Generating new frames . . .")
+print("Generating new frames. . .")
 for i in range(60):
     subprocess.run(
         f"rpicam-jpeg -n -o ./framebuffer/{i + 1}.jpeg -q 20 -t 1ms --hflip --vflip &",
