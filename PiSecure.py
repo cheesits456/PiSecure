@@ -37,6 +37,8 @@ for i in range(10):
     )
     print(f"Frame {frameNumber} generated")
     time.sleep(1)
+    
+time.sleep(1)
 
 for file in os.listdir("./framebuffer"):
     add_timestamp_to_image(f"./framebuffer/{file}")
