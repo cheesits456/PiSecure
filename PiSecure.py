@@ -13,7 +13,7 @@ def add_timestamp_to_image(path):
     xPosition = 50
     yPosition = 2320
 
-    img = Image.open(path)
+    img = Image.open(path).convert("RGBA")
     drawMain = ImageDraw.Draw(img)
     font = ImageFont.truetype(fontFile, fontSize)
 
