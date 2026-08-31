@@ -1,4 +1,4 @@
-from picamera2 import Picamera2, Preview
+from picamera2 import Picamera2
 import time
 
 picam = Picamera2()
@@ -9,5 +9,3 @@ picam.configure(camera_config)
 picam.start()
 
 picam.capture_file("test_photo.jpg")
-
-print("testing 123")
