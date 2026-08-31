@@ -44,11 +44,11 @@ for i in range(3):
     frameNumber = i + 1
     savePath = f"./framebuffer/{frameNumber}.jpeg"
     subprocess.run(
-        args=f"rpicam-jpeg -n -o {savePath} -q 20 -t 1ms --hflip --vflip &",
-        executable="/bin/bash",
-        shell=True,
-        stderr=subprocess.DEVNULL,
-        stdout=subprocess.DEVNULL,
+        args = f"rpicam-jpeg -n -o {savePath} -q 20 -t 1ms --hflip --vflip &",
+        executable = "/bin/bash",
+        shell = True,
+        stderr = subprocess.DEVNULL,
+        stdout = subprocess.DEVNULL,
     )
     print(f"Frame {frameNumber} generated")
     time.sleep(1)
