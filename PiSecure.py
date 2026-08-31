@@ -2,7 +2,7 @@ import os
 import subprocess
 import time
 
-frames = os.listdir("./framebuffer").sort()
+frames = os.listdir("./framebuffer")
 for file in frames:
     os.remove(f"./framebuffer/{file}")
 
