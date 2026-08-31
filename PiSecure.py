@@ -8,7 +8,7 @@ def add_timestamp_to_image(path):
     print(f"Adding timestamp to {path}")
 
     fontFile = "./FiraCodeMono.ttf"
-    fontSize = 65
+    fontSize = 100
     xPosition = 20
     yPosition = 2450
 
