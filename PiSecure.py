@@ -14,20 +14,33 @@ def add_timestamp_to_image(path):
     yPosition = 2320
 
     img = Image.open(path)
-    image = ImageDraw.Draw(img)
+    drawMain = ImageDraw.Draw(img)
     font = ImageFont.truetype(fontFile, fontSize)
 
-    image.rounded_rectangle(
-        corners=(False, True, False, False),
-        fill=(0, 0, 0, 127),
-        radius=50,
-        xy=[(0, 2290), (1150, 2464)],
+    tintColor = (0, 0, 0)
+    transparency = .25  # 0=0%, 1=100%
+    opacity = int(255 * transparency)
+    
+    overlay = Image.new(
+        mode = "RGBA",
+        size = img.size,
+        color = tintColor + (0,)
     )
-    image.text(
-        fill=(255, 255, 255),
-        font=font,
-        text="2026-08-31 2:02PM",
-        xy=(xPosition, yPosition)
+    drawOverlay = ImageDraw.Draw(overlay)
+    drawOverlay.rounded_rectangle(
+        corners = (False, True, False, False),
+        fill = tintColor + (opacity,),
+        radius = 50,
+        xy = [(0, 2290), (1150, 2464)],
+    )
+    img = Image.alpha_composite(img, overlay)
+    img = img.convert("RGB")
+    
+    drawMain.text(
+        fill = (255, 255, 255),
+        font = font,
+        text = "2026-08-31 2:02PM",
+        xy = (xPosition, yPosition),
     )
     img.save(path)
 
