@@ -5,7 +5,6 @@ picam2 = Picamera2()
 
 config = picam2.create_preview_configuration({"format": "BGR888", "size": (3280, 2464)})
 picam2.align_configuration(config)
-config["main"]
 
 picam2.configure(config)
 
