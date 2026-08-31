@@ -10,7 +10,7 @@ for file in os.listdir("./framebuffer"):
 # Generate new frames for 1 minute
 for i in range(60):
     subprocess.run(
-        f"rpicam-jpeg -n -o ./framebuffer/{i + 1}.jpeg -q 20 -t 1ms --hflip --vflip > /dev/null &",
+        f"rpicam-jpeg -n -o ./framebuffer/{i + 1}.jpeg -q 20 -t 1ms --hflip --vflip & > /dev/null",
         shell=True,
         executable="/bin/bash",
     )
