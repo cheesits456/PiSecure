@@ -4,8 +4,10 @@ import threading
 import time
 
 # Clear old frames first
+print("Clearing old frames . . .")
 for file in os.listdir("./framebuffer"):
     os.remove(f"./framebuffer/{file}")
+print("Done!")
 
 # Generate new frames for 1 minute
 for i in range(60):
