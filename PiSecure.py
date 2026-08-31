@@ -14,3 +14,4 @@ for i in range(10*60):  # 100ms * 10 * 60
         shell=True,
         executable="/bin/bash",
     )
+    time.sleep(0.1)
