@@ -5,7 +5,6 @@ picam2 = Picamera2()
 
 config = picam2.create_video_configuration(
     {
-        "bit_depth": 8,
         "crop_limits": (680, 692, 1920, 1080),
         "exposure_limits": (75, 11766829, 20000),
         "fps": 47.57,
