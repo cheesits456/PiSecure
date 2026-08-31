@@ -8,4 +8,4 @@ picam.configure(camera_config)
 
 picam.start()
 
-picam.capture_file("test_photo.jpg")
+picam.start_and_record_video("test_video.mp4", duration=5)
