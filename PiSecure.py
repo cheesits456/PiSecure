@@ -8,12 +8,10 @@ config = picam2.create_video_configuration(
         "bit_depth": 8,
         "crop_limits": (680, 692, 1920, 1080),
         "exposure_limits": (75, 11766829, 20000),
-        "format": "SRGGB8",
         "fps": 47.57,
-        "size": (1920, 1080),
-        "unpacked": "SRGGB8",
+        "size": (1920, 1080)
     },
-    transform=Transform(hflip=True, vflip=True),
+    transform=Transform(hflip=True, vflip=True)
 )
 picam2.configure(config)
 
