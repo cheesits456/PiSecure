@@ -62,23 +62,23 @@ print("Done!")
 # Main loop
 frameBatches = 0
 
-while True:
-    print("Generating new frames. . .")
-    for i in range(5):
-        frameNumber = (i + 1) + (frameBatches * 5)
-        savePath = f"./framebuffer/{frameNumber}.jpeg"
-        subprocess.run(
-            args = f"rpicam-jpeg -n -o {savePath} -q 20 -t 1ms --hflip --vflip &",
-            executable = "/bin/bash",
-            shell = True,
-            stderr = subprocess.DEVNULL,
-            stdout = subprocess.DEVNULL,
-        )
-        print(f"Frame {frameNumber} generated")
-        time.sleep(1)
+with ThreadPoolExecutor(max_workers=3) as executor:
+    while True:
+        print("Generating new frames. . .")
+        for i in range(5):
+            frameNumber = (i + 1) + (frameBatches * 5)
+            savePath = f"./framebuffer/{frameNumber}.jpeg"
+            subprocess.run(
+                args = f"rpicam-jpeg -n -o {savePath} -q 20 -t 1ms --hflip --vflip &",
+                executable = "/bin/bash",
+                shell = True,
+                stderr = subprocess.DEVNULL,
+                stdout = subprocess.DEVNULL,
+            )
+            print(f"Frame {frameNumber} generated")
+            time.sleep(1)
     
-    with ThreadPoolExecutor(max_workers=3) as executor:
         for file in os.listdir("./framebuffer"):
             executor.submit(add_timestamp_to_image, f"./framebuffer/{file}")
     
-    frameBatches += 1
+        frameBatches += 1
