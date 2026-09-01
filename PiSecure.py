@@ -61,7 +61,7 @@ print("Done!")
 
 # Main loop
 frameBatches = 0
-batchSize = 5  # How many frames per frame batch
+batchSize = 3  # How many frames per frame batch
 
 with ThreadPoolExecutor(max_workers=batchSize) as executor:
     while True:
