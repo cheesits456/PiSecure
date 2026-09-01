@@ -16,7 +16,7 @@ def add_timestamp_to_image(path):
     xPosition = 50
     yPosition = 2320
     
-    timestamp = str(datetime.fromtimestamp(os.path.getmtime(path))).split(".")[0]
+    timestamp = str(datetime.fromtimestamp(os.path.getctime(path))).split(".")[0]
 
     img = Image.open(path).convert("RGBA")
     font = ImageFont.truetype(fontFile, fontSize)
@@ -61,7 +61,7 @@ print("Done!")
 
 # Main loop
 frameBatches = 0
-batchSize = 10  # How many frames per frame batch
+batchSize = 5  # How many frames per frame batch
 
 with ThreadPoolExecutor(max_workers=batchSize) as executor:
     while True:
@@ -81,7 +81,7 @@ with ThreadPoolExecutor(max_workers=batchSize) as executor:
     
         for file in os.listdir("./framebuffer"):
             frameNumber = int(file.split(".")[0])
-            print(frameNumber)
+            # print(frameNumber)
             if frameNumber > frameBatches * batchSize and frameNumber <= (frameBatches + 1) * batchSize:
                 executor.submit(add_timestamp_to_image, f"./framebuffer/{file}")
     
