@@ -22,19 +22,19 @@ def add_timestamp_to_image(path):
 
     # Values for black box in bottom corner
     tintColor = (0, 0, 0)
-    transparency = .75  # 0=0%, 1=100%
+    transparency = 0.75  # 0=0%, 1=100%
     opacity = int(255 * transparency)
     # Create blank image with same dimensions as captured image
     overlay = Image.new(
         mode = "RGBA",
         size = img.size,
-        color = tintColor + (0)
+        color = tintColor + (0,)
     )
     # Draw black rectangle in bottom corner
     drawOverlay = ImageDraw.Draw(overlay)
     drawOverlay.rounded_rectangle(
         corners = (False, True, False, False),
-        fill = tintColor + (opacity),
+        fill = tintColor + (opacity,),
         radius = 50,
         xy = [(0, 2290), (1250, 2464)],
     )
@@ -59,19 +59,22 @@ for file in os.listdir("./framebuffer"):
 print("Done!")
 
 # Generate new frames for 1 minute
-with ThreadPoolExecutor(max_workers=3) as executor:
-    print("Generating new frames. . .")
-    for i in range(3):
-        frameNumber = i + 1
-        savePath = f"./framebuffer/{frameNumber}.jpeg"
-        subprocess.run(
-            args = f"rpicam-jpeg -n -o {savePath} -q 20 -t 1ms --hflip --vflip &",
-            executable = "/bin/bash",
-            shell = True,
-            stderr = subprocess.DEVNULL,
-            stdout = subprocess.DEVNULL,
-        )
-        print(f"Frame {frameNumber} generated")
-        executor.submit(add_timestamp_to_image, savePath)
-        time.sleep(1)
+print("Generating new frames. . .")
+for i in range(3):
+    frameNumber = i + 1
+    savePath = f"./framebuffer/{frameNumber}.jpeg"
+    subprocess.run(
+        args = f"rpicam-jpeg -n -o {savePath} -q 20 -t 1ms --hflip --vflip &",
+        executable = "/bin/bash",
+        shell = True,
+        stderr = subprocess.DEVNULL,
+        stdout = subprocess.DEVNULL,
+    )
+    print(f"Frame {frameNumber} generated")
+    time.sleep(1)
 
+time.sleep(1)
+
+with ThreadPoolExecutor(max_workers=3) as executor:
+    for file in os.listdir("./framebuffer"):
+        executor.submit(add_timestamp_to_image, f"./framebuffer/{file}")
