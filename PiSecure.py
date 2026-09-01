@@ -17,15 +17,17 @@ def add_timestamp_to_image(path):
     drawMain = ImageDraw.Draw(img)
     font = ImageFont.truetype(fontFile, fontSize)
 
+    # Values for black box in bottom corner
     tintColor = (0, 0, 0)
     transparency = .75  # 0=0%, 1=100%
     opacity = int(255 * transparency)
-    
+    # Create blank image with same dimensions as captured image
     overlay = Image.new(
         mode = "RGBA",
         size = img.size,
         color = tintColor + (0,)
     )
+    # Draw black rectangle in bottom corner
     drawOverlay = ImageDraw.Draw(overlay)
     drawOverlay.rounded_rectangle(
         corners = (False, True, False, False),
@@ -33,10 +35,11 @@ def add_timestamp_to_image(path):
         radius = 50,
         xy = [(0, 2290), (1150, 2464)],
     )
+    # Overlay image with rectangle on top of captured image and convert back to RGB
     img = Image.alpha_composite(img, overlay)
     img = img.convert("RGB")
+    # Print timestamp in bottom corner on top of black rectangle
     drawFinal = ImageDraw.Draw(img)
-    
     drawFinal.text(
         fill = (255, 255, 255),
         font = font,
