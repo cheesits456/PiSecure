@@ -61,12 +61,13 @@ print("Done!")
 
 # Main loop
 frameBatches = 0
+batchSize = 10  # How many frames per frame batch
 
-with ThreadPoolExecutor(max_workers=3) as executor:
+with ThreadPoolExecutor(max_workers=batchSize) as executor:
     while True:
         print("Generating new frames. . .")
-        for i in range(5):
-            frameNumber = (i + 1) + (frameBatches * 5)
+        for i in range(batchSize):
+            frameNumber = (i + 1) + (frameBatches * batchSize)
             savePath = f"./framebuffer/{frameNumber}.jpeg"
             subprocess.run(
                 args = f"rpicam-jpeg -n -o {savePath} -q 20 -t 1ms --hflip --vflip &",
@@ -80,7 +81,7 @@ with ThreadPoolExecutor(max_workers=3) as executor:
     
         for file in os.listdir("./framebuffer"):
             frameNumber = int(file.split(".")[0])
-            if frameNumber > frameBatches * 5 and frameNumber <= (frameBatches + 1) * 5:
+            if frameNumber > frameBatches * batchSize and frameNumber <= (frameBatches + 1) * batchSize:
                 executor.submit(add_timestamp_to_image, f"./framebuffer/{file}")
     
         frameBatches += 1
