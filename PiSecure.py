@@ -15,7 +15,7 @@ def add_timestamp_to_image(path):
     yPosition = 2320
     
     timestamp = os.path.getmtime(path)
-    print(datetime.fromtimestamp(timestamp))
+    print(datetime.fromtimestamp(timestamp).split(".")[0])
 
     img = Image.open(path).convert("RGBA")
     font = ImageFont.truetype(fontFile, fontSize)
