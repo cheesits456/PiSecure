@@ -79,6 +79,8 @@ with ThreadPoolExecutor(max_workers=3) as executor:
             time.sleep(1)
     
         for file in os.listdir("./framebuffer"):
-            executor.submit(add_timestamp_to_image, f"./framebuffer/{file}")
+            frameNumber = int(file.split(".")[0])
+            if frameNumber > frameBatches * 5 and frameNumber <= (frameBatches + 1) * 5:
+                executor.submit(add_timestamp_to_image, f"./framebuffer/{file}")
     
         frameBatches += 1
