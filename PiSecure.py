@@ -78,11 +78,10 @@ with ThreadPoolExecutor(max_workers=batchSize) as executor:
             )
             print(f"Frame {frameNumber} generated")
             time.sleep(1)
-    
-        for file in os.listdir("./framebuffer"):
-            frameNumber = int(file.split(".")[0])
-            # print(frameNumber)
-            if frameNumber > frameBatches * batchSize and frameNumber <= ((frameBatches + 1) * batchSize) + 1:
-                executor.submit(add_timestamp_to_image, f"./framebuffer/{file}")
+
+        for frameNumber in range(frameBatches * batchSize, (frameBatches + 1) * batchSize):
+            frameNumber += 1
+            print(frameNumber)
+            executor.submit(add_timestamp_to_image, f"./framebuffer/{file}")
     
         frameBatches += 1
