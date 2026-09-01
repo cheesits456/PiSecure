@@ -14,7 +14,6 @@ def add_timestamp_to_image(path):
     yPosition = 2320
 
     img = Image.open(path).convert("RGBA")
-    drawMain = ImageDraw.Draw(img)
     font = ImageFont.truetype(fontFile, fontSize)
 
     # Values for black box in bottom corner
