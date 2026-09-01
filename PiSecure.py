@@ -2,6 +2,7 @@ import os
 import subprocess
 import time
 
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont
 
@@ -74,5 +75,6 @@ for i in range(3):
 
 time.sleep(1)
 
-for file in os.listdir("./framebuffer"):
-    add_timestamp_to_image(f"./framebuffer/{file}")
+with ThreadPoolExecutor(max_workers=3) as executor:
+    for file in os.listdir("./framebuffer"):
+        executor.submit(add_timestamp_to_image, f"./framebuffer/{file}")
