@@ -35,7 +35,7 @@ def add_timestamp_to_image(path):
         corners = (False, True, False, False),
         fill = tintColor + (opacity,),
         radius = 50,
-        xy = [(0, 2290), (1150, 2464)],
+        xy = [(0, 2290), (1250, 2464)],
     )
     # Overlay image with rectangle on top of captured image and convert back to RGB
     img = Image.alpha_composite(img, overlay)
