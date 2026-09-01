@@ -2,6 +2,7 @@ import os
 import subprocess
 import time
 
+from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont
 
 
@@ -12,6 +13,9 @@ def add_timestamp_to_image(path):
     fontSize = 100
     xPosition = 50
     yPosition = 2320
+    
+    timestamp = os.path.getmtime(path)
+    print(datetime.fromtimestamp(timestamp))
 
     img = Image.open(path).convert("RGBA")
     font = ImageFont.truetype(fontFile, fontSize)
