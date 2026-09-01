@@ -14,8 +14,7 @@ def add_timestamp_to_image(path):
     xPosition = 50
     yPosition = 2320
     
-    timestamp = os.path.getmtime(path)
-    print(str(datetime.fromtimestamp(timestamp)).split(".")[0])
+    timestamp = str(datetime.fromtimestamp(os.path.getmtime(path))).split(".")[0]
 
     img = Image.open(path).convert("RGBA")
     font = ImageFont.truetype(fontFile, fontSize)
@@ -46,7 +45,7 @@ def add_timestamp_to_image(path):
     drawFinal.text(
         fill = (255, 255, 255),
         font = font,
-        text = "2026-08-31 2:02PM",
+        text = timestamp,
         xy = (xPosition, yPosition),
     )
     img.save(path)
