@@ -60,8 +60,8 @@ for file in os.listdir("./framebuffer"):
 print("Done!")
 
 # Main loop
-frameBatches = 0
-batchSize = 3  # How many frames per frame batch
+frameBatches = 0  # How many times a frame batch has run (do not change, should always start at zero)
+batchSize = 10  # How many frames per frame batch
 
 with ThreadPoolExecutor(max_workers=batchSize) as executor:
     while True:
@@ -79,8 +79,9 @@ with ThreadPoolExecutor(max_workers=batchSize) as executor:
             print(f"Frame {frameNumber} generated")
             time.sleep(1)
 
+        # Loop over new frames added this batch only
         for frameNumber in range(frameBatches * batchSize, (frameBatches + 1) * batchSize):
-            frameNumber += 1
+            frameNumber += 1  # zero-indexed so add one for actual frame number
             print(frameNumber)
             executor.submit(add_timestamp_to_image, f"./framebuffer/{frameNumber}.jpeg")
     
