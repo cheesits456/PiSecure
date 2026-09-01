@@ -27,13 +27,13 @@ def add_timestamp_to_image(path):
     overlay = Image.new(
         mode = "RGBA",
         size = img.size,
-        color = tintColor + (0,)
+        color = tintColor + (0)
     )
     # Draw black rectangle in bottom corner
     drawOverlay = ImageDraw.Draw(overlay)
     drawOverlay.rounded_rectangle(
         corners = (False, True, False, False),
-        fill = tintColor + (opacity,),
+        fill = tintColor + (opacity),
         radius = 50,
         xy = [(0, 2290), (1250, 2464)],
     )
