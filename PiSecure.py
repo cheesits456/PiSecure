@@ -63,9 +63,10 @@ print("Done!")
 frameBatches = 0  # How many times a frame batch has run (do not change, should always start at zero)
 batchSize = 10  # How many frames per frame batch
 
+print("Generating new frames. . .")
 with ThreadPoolExecutor(max_workers=batchSize) as executor:
     while True:
-        print("Generating new frames. . .")
+        print(f"Starting frame batch {frameBatches + 1}")
         for i in range(batchSize):
             frameNumber = (i + 1) + (frameBatches * batchSize)
             savePath = f"./framebuffer/{frameNumber}.jpeg"
@@ -86,3 +87,4 @@ with ThreadPoolExecutor(max_workers=batchSize) as executor:
             executor.submit(add_timestamp_to_image, f"./framebuffer/{frameNumber}.jpeg")
     
         frameBatches += 1
+        print(f"Frame batch {frameBatches} complete!")
