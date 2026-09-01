@@ -58,7 +58,7 @@ for file in os.listdir("./framebuffer"):
     os.remove(f"./framebuffer/{file}")
 print("Done!")
 
-# Generate new frames for 1 minute
+# Main loop
 print("Generating new frames. . .")
 for i in range(5):
     frameNumber = i + 1
