@@ -74,3 +74,5 @@ with ThreadPoolExecutor(max_workers=3) as executor:
         print(f"Frame {frameNumber} generated")
         executor.submit(add_timestamp_to_image, savePath)
         time.sleep(1)
+
+time.sleep(2)
