@@ -3,7 +3,10 @@
 echo "------------------------------------------------------------"
 echo "                   Pulling from Git repo                    "
 echo "------------------------------------------------------------"
-git pull
+git stash
+git fetch --all
+git reset --hard origin/main
+git stash pop
 echo ""
 echo "------------------------------------------------------------"
 echo "                  Running main script file                  "
