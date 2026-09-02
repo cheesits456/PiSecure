@@ -51,6 +51,10 @@ def add_timestamp_to_image(path):
         xy = (xPosition, yPosition),
     )
     img.save(path)
+    
+def touch(path):
+    with open(path, 'a'):
+        os.utime(path, None)
 
 
 # Clear old frames first
@@ -59,32 +63,41 @@ for file in os.listdir("./framebuffer"):
     os.remove(f"./framebuffer/{file}")
 print("Done!")
 
+subprocess.run(
+    args = "./framegenerator.sh &",
+    executable = "/bin/bash",
+    shell = True
+)
+
+time.sleep(10)
+
+touch("./stopFrameGenerator")
+
 # Main loop
-frameBatches = 0  # How many times a frame batch has run (do not change, should always start at zero)
-batchSize = 10  # How many frames per frame batch
+# frameBatches = 0  # How many times a frame batch has run (do not change, should always start at zero)
+# batchSize = 10  # How many frames per frame batch
 
-print("Generating new frames. . .")
-with ThreadPoolExecutor(max_workers=batchSize) as executor:
-    while True:
-        print(f"Starting frame batch {frameBatches + 1}")
-        for i in range(batchSize):
-            frameNumber = (i + 1) + (frameBatches * batchSize)
-            savePath = f"./framebuffer/{frameNumber}.jpeg"
-            subprocess.run(
-                args = f"rpicam-jpeg -n -o {savePath} -q 20 -t 1ms --hflip --vflip &",
-                executable = "/bin/bash",
-                shell = True,
-                stderr = subprocess.DEVNULL,
-                stdout = subprocess.DEVNULL,
-            )
-            print(f"Frame {frameNumber} generated")
-            time.sleep(1)
+# print("Generating new frames. . .")
+# with ThreadPoolExecutor(max_workers=batchSize) as executor:
+#     while True:
+#         print(f"Starting frame batch {frameBatches + 1}")
+#         # for i in range(batchSize):
+#         #     frameNumber = (i + 1) + (frameBatches * batchSize)
+#         #     savePath = f"./framebuffer/{frameNumber}.jpeg"
+#         #     subprocess.run(
+#         #         args = f"rpicam-jpeg -n -o {savePath} -q 20 -t 1ms --hflip --vflip &",
+#         #         executable = "/bin/bash",
+#         #         shell = True,
+#         #         stderr = subprocess.DEVNULL,
+#         #         stdout = subprocess.DEVNULL,
+#         #     )
+#         #     print(f"Frame {frameNumber} generated")
+#         #     time.sleep(1)
 
-        # Loop over new frames added this batch only
-        for frameNumber in range(frameBatches * batchSize, (frameBatches + 1) * batchSize):
-            frameNumber += 1  # zero-indexed so add one for actual frame number
-            print(frameNumber)
-            executor.submit(add_timestamp_to_image, f"./framebuffer/{frameNumber}.jpeg")
+#         # Loop over new frames added this batch only
+#         for frameNumber in range(frameBatches * batchSize, (frameBatches + 1) * batchSize):
+#             frameNumber += 1  # zero-indexed so add one for actual frame number
+#             executor.submit(add_timestamp_to_image, f"./framebuffer/{frameNumber}.jpeg")
     
-        frameBatches += 1
-        print(f"Frame batch {frameBatches} complete!")
+#         frameBatches += 1
+#         print(f"Frame batch {frameBatches} complete!")
