@@ -3,10 +3,9 @@
 echo "------------------------------------------------------------"
 echo "                   Pulling from Git repo                    "
 echo "------------------------------------------------------------"
-git stash
 git fetch --all
 git reset --hard origin/main
-git stash pop
+chmod +x framegenerator.sh PiSecure
 echo ""
 echo "------------------------------------------------------------"
 echo "                  Running main script file                  "
