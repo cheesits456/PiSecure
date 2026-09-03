@@ -84,13 +84,3 @@ observer.start()
 input("Press 'Enter' to stop\n")
 
 touch("./stopFrameGenerator")
-
-
-# Sleep until 10 frames generated, stop generator, wait for final frame
-# time.sleep(10)
-# time.sleep(1)
-
-# # Loop over new frames and add timestamps
-# for file in os.listdir("./framebuffer"):
-#     add_timestamp_to_image(f"./framebuffer/{file}")
-    
