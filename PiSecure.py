@@ -56,9 +56,10 @@ subprocess.run(
     shell = True
 )
 
-time.sleep(11)
-
+# Sleep until 10 frames generated, stop generator, wait for final frame
+time.sleep(10)
 touch("./stopFrameGenerator")
+time.sleep(1)
 
 # Loop over new frames and add timestamps
 for file in os.listdir("./framebuffer"):
