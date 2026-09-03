@@ -51,6 +51,7 @@ def add_timestamp_to_image(path):
         xy = (xPosition, yPosition),
     )
     img.save(path)
+    print(f"Timestamp added to {path}!")
     
     
 def touch(path):
