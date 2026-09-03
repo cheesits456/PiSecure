@@ -15,7 +15,7 @@ class FileChangeHandler(FileSystemEventHandler):
         add_timestamp_to_image(event.src_path)
 
 def add_timestamp_to_image(path):
-    time.sleep(0.05)
+    time.sleep(0.02)
     print(f"Adding timestamp to {path}")
 
     fontFile = "./FiraCodeMono.ttf"
@@ -78,7 +78,7 @@ subprocess.run(
 
 event_handler = FileChangeHandler()
 observer = Observer()
-observer.schedule(event_handler, path='./framebuffer', recursive=False)
+observer.schedule(event_handler, path='./framebuffer/', recursive=False)
 observer.start()
 
 input("Press 'Enter' to stop\n")
