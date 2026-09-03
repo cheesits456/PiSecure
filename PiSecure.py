@@ -56,7 +56,7 @@ subprocess.run(
     shell = True
 )
 
-time.sleep(10)
+time.sleep(11)
 
 touch("./stopFrameGenerator")
 
