@@ -15,7 +15,6 @@ class FileChangeHandler(FileSystemEventHandler):
         add_timestamp_to_image(event.src_path)
 
 def add_timestamp_to_image(path):
-    time.sleep(1)
     print(f"Adding timestamp to {path}")
 
     fontFile = "./FiraCodeMono.ttf"
@@ -25,21 +24,33 @@ def add_timestamp_to_image(path):
     
     timestamp = str(datetime.fromtimestamp(os.path.getctime(path))).split(".")[0]
 
-    img = Image.open(path)
-    imgDraw = ImageDraw.Draw(img)
+    img = Image.open(path).convert("RGBA")
     font = ImageFont.truetype(fontFile, fontSize)
-    # Color for black box in bottom corner
-    tintColor = (0, 0, 0)
 
+    # Values for black box in bottom corner
+    tintColor = (0, 0, 0)
+    transparency = 0.75  # 0=0%, 1=100%
+    opacity = int(255 * transparency)
+    # Create blank image with same dimensions as captured image
+    overlay = Image.new(
+        mode = "RGBA",
+        size = img.size,
+        color = tintColor + (0,)
+    )
     # Draw black rectangle in bottom corner
-    imgDraw.rounded_rectangle(
+    drawOverlay = ImageDraw.Draw(overlay)
+    drawOverlay.rounded_rectangle(
         corners = (False, True, False, False),
-        fill = tintColor,
+        fill = tintColor + (opacity,),
         radius = 50,
         xy = [(0, 2290), (1250, 2464)],
     )
+    # Overlay image with rectangle on top of captured image and convert back to RGB
+    img = Image.alpha_composite(img, overlay)
+    img = img.convert("RGB")
     # Print timestamp in bottom corner on top of black rectangle
-    imgDraw.text(
+    drawFinal = ImageDraw.Draw(img)
+    drawFinal.text(
         fill = (255, 255, 255),
         font = font,
         text = timestamp,
