@@ -5,7 +5,7 @@ echo "                   Pulling from Git repo                    "
 echo "------------------------------------------------------------"
 git fetch --all
 git reset --hard origin/main
-chmod +x captureframe.sh framegenerator.sh PiSecure
+chmod +x helpers/captureframe.sh helpers/framegenerator.sh PiSecure
 echo ""
 echo "------------------------------------------------------------"
 echo "                  Running main script file                  "
