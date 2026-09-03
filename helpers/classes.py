@@ -1,6 +1,6 @@
 from watchdog.events import FileSystemEventHandler
 
-from functions import add_timestamp_to_image
+from helpers.functions import add_timestamp_to_image
 
 
 class FileCreateHandler(FileSystemEventHandler):

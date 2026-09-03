@@ -3,8 +3,8 @@ import subprocess
 
 from watchdog.observers import Observer
 
-from classes import FileCreateHandler
-from functions import touch
+from helpers.classes import FileCreateHandler
+from helpers.functions import touch
 
 
 # Clear old frames first
@@ -14,7 +14,7 @@ for file in os.listdir("./framebuffer"):
 print("Done!")
 
 subprocess.run(
-    args = "./framegenerator.sh &",
+    args = "./helpers/framegenerator.sh &",
     executable = "/bin/bash",
     shell = True
 )
