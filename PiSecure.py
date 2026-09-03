@@ -3,7 +3,7 @@ import subprocess
 
 from watchdog.observers import Observer
 
-from classes import FileChangeHandler
+from classes import FileCreateHandler
 from functions import touch
 
 
@@ -19,7 +19,8 @@ subprocess.run(
     shell = True
 )
 
-event_handler = FileChangeHandler()
+# Observe ./framebuffer/ directory for newly created files
+event_handler = FileCreateHandler()
 observer = Observer()
 observer.schedule(event_handler, path='./framebuffer/', recursive=False)
 observer.start()
