@@ -69,7 +69,7 @@ observer = Observer()
 observer.schedule(event_handler, path='./framebuffer', recursive=False)
 observer.start()
 
-input("test")
+input("Press 'Enter' to stop\n")
 
 touch("./stopFrameGenerator")
 
