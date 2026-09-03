@@ -18,20 +18,22 @@ def add_timestamp_to_image(path):
     time.sleep(0.02)
     print(f"Adding timestamp to {path}")
 
+    # Values for timestamp in bottom corner
     fontFile = "./FiraCodeMono.ttf"
     fontSize = 100
     xPosition = 50
     yPosition = 2320
+    
+    # Values for black box behind / around timestamp
+    tintColor = (0, 0, 0)
+    transparency = 0.75  # 0=0%, 1=100%
+    opacity = int(255 * transparency)
     
     timestamp = str(datetime.fromtimestamp(os.path.getctime(path))).split(".")[0]
 
     img = Image.open(path).convert("RGBA")
     font = ImageFont.truetype(fontFile, fontSize)
 
-    # Values for black box in bottom corner
-    tintColor = (0, 0, 0)
-    transparency = 0.75  # 0=0%, 1=100%
-    opacity = int(255 * transparency)
     # Create blank image with same dimensions as captured image
     overlay = Image.new(
         mode = "RGBA",
