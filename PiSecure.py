@@ -81,7 +81,7 @@ input("test")
 
 # Sleep until 10 frames generated, stop generator, wait for final frame
 # time.sleep(10)
-# touch("./stopFrameGenerator")
+touch("./stopFrameGenerator")
 # time.sleep(1)
 
 # # Loop over new frames and add timestamps
