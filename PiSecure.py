@@ -4,7 +4,21 @@ import time
 
 from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont
+from watchdog.events import FileSystemEventHandler
+from watchdog.observers import Observer
 
+# ------------------------------
+#  Class / Function Definitions
+# ------------------------------
+class FileChangeHandler(FileSystemEventHandler):
+    def on_any_event(self, event):
+        print(event.event_type, event.src_path)
+
+    def on_created(self, event):
+        print("on_created", event.src_path)
+        print(event.src_path.strip())
+        if((event.src_path).strip() == ".\test.xml"):        
+            print("Execute your logic here!")
 
 def add_timestamp_to_image(path):
     time.sleep(1)
@@ -56,12 +70,19 @@ subprocess.run(
     shell = True
 )
 
-# Sleep until 10 frames generated, stop generator, wait for final frame
-time.sleep(10)
-touch("./stopFrameGenerator")
-time.sleep(1)
+event_handler = FileChangeHandler()
+observer = Observer()
+observer.schedule(event_handler, path='./framebuffer', recursive=False)
+observer.start()
 
-# Loop over new frames and add timestamps
-for file in os.listdir("./framebuffer"):
-    add_timestamp_to_image(f"./framebuffer/{file}")
+
+
+# Sleep until 10 frames generated, stop generator, wait for final frame
+# time.sleep(10)
+# touch("./stopFrameGenerator")
+# time.sleep(1)
+
+# # Loop over new frames and add timestamps
+# for file in os.listdir("./framebuffer"):
+#     add_timestamp_to_image(f"./framebuffer/{file}")
     
