@@ -52,6 +52,7 @@ def add_timestamp_to_image(path):
     )
     img.save(path)
     
+    
 def touch(path):
     with open(path, 'a'):
         os.utime(path, None)
