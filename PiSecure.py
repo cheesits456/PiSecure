@@ -75,6 +75,8 @@ observer = Observer()
 observer.schedule(event_handler, path='./framebuffer', recursive=False)
 observer.start()
 
+input("test")
+
 
 
 # Sleep until 10 frames generated, stop generator, wait for final frame
