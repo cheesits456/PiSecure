@@ -11,14 +11,8 @@ from watchdog.observers import Observer
 #  Class / Function Definitions
 # ------------------------------
 class FileChangeHandler(FileSystemEventHandler):
-    def on_any_event(self, event):
-        print(event.event_type, event.src_path)
-
     def on_created(self, event):
-        print("on_created", event.src_path)
-        print(event.src_path.strip())
-        if((event.src_path).strip() == ".\test.xml"):        
-            print("Execute your logic here!")
+        add_timestamp_to_image(event.src_path)
 
 def add_timestamp_to_image(path):
     time.sleep(1)
