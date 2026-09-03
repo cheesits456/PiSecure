@@ -15,6 +15,7 @@ class FileChangeHandler(FileSystemEventHandler):
         add_timestamp_to_image(event.src_path)
 
 def add_timestamp_to_image(path):
+    time.sleep(0.1)
     print(f"Adding timestamp to {path}")
 
     fontFile = "./FiraCodeMono.ttf"
