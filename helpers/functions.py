@@ -5,11 +5,12 @@ import time
 from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont
 
-from config import batchSize
+from config import batchSize, timestampDebugLevel
 
 
 def add_timestamp_to_image(path):
     time.sleep(0.02)
+    if timestampDebugLevel >= 3: print(f"Adding timestamp to {path}. . .")
 
     # Values for timestamp in bottom corner
     fontFile = "./assets/FiraCodeMono.ttf"
@@ -53,7 +54,7 @@ def add_timestamp_to_image(path):
         xy = (xPosition, yPosition),
     )
     img.save(path)
-    print(f"Timestamp added to {path}!")
+    if timestampDebugLevel >= 2: print(f"Timestamp added to {path}!")
 
 
 def convert_frames_to_video(frameCount):
