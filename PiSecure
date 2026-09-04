@@ -12,4 +12,5 @@ echo "------------------------------------------------------------"
 echo "                  Running main script file                  "
 echo "------------------------------------------------------------"
 echo
+echo "Loading. . ."
 python PiSecure.py
