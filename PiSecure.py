@@ -35,7 +35,7 @@ input("\n".join([
     "╭───────────────────────────────────────────────────────────────────────────────╮",
     "│ Press 'Enter' to stop                                                         │",
     "│ If you stop with CTRL+C the frame generator will keep going in the background │",
-    "│ If done by accident, remedy via './stop'                                      │",
+    "│ If done by accident, remedy via running the command './stop'                  │",
     "╰───────────────────────────────────────────────────────────────────────────────╯",
     "",
     ""
