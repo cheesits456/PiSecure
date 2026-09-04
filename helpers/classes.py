@@ -1,6 +1,7 @@
 from concurrent.futures import ThreadPoolExecutor
 from watchdog.events import FileSystemEventHandler
 
+from config import batchSize
 from helpers.functions import add_timestamp_to_image, convert_frames_to_video
 
 
@@ -12,6 +13,6 @@ class FileCreateHandler(FileSystemEventHandler):
 
             # The variable event.src_path == './framebuffer/n.jpeg', where 'n' is the frame number
             frameNumber = int(event.src_path.split("/")[2].split(".")[0])
-            if frameNumber % 10 == 0:
+            if frameNumber % batchSize == 0:
                 executor.submit(convert_frames_to_video, frameNumber)
                 
