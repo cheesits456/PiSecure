@@ -1,13 +1,15 @@
 #!/bin/env bash
-
+echo
 echo "------------------------------------------------------------"
 echo "                   Pulling from Git repo                    "
 echo "------------------------------------------------------------"
+echo
 git fetch --all
 git reset --hard origin/main
 chmod +x helpers/captureframe.sh helpers/framegenerator.sh PiSecure
-echo ""
+echo
 echo "------------------------------------------------------------"
 echo "                  Running main script file                  "
 echo "------------------------------------------------------------"
+echo
 python PiSecure.py
