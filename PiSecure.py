@@ -31,6 +31,7 @@ observer.start()
 
 time.sleep(0.1)  # Small delay so that 'generating frames' message gets printed before the below message
 input("\n".join([
+    "",
     "╭───────────────────────────────────────────────────────────────────────────────╮",
     "│ Press 'Enter' to stop                                                         │",
     "│ If you stop with CTRL+C the frame generator will keep going in the background │",

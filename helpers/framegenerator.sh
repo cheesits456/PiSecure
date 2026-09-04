@@ -3,7 +3,7 @@
 source "./config.py"
 frameNumber=0
 
-if [[ $debugLevel -ge 1 ]]; then echo "Generating new frames. . ."; echo; fi
+if [[ $debugLevel -ge 1 ]]; then echo "Generating new frames. . ."; fi
 
 # Loop while file ./stopFrameGenerator doesn't exist
 while [ ! -f "./stopFrameGenerator" ]; do
