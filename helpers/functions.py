@@ -69,12 +69,12 @@ def convert_frames_to_video(frameCount):
     timestamp = str(datetime.fromtimestamp(os.path.getctime(frames[0]))).split(".")[0]
     foldername, filename = timestamp.split(" ")
     outputFolder = f"./footage/{foldername}"
-    outputFile = f"{outputFolder}/{filename}.mp4"
+    outputFile = f"{outputFolder}/{filename}.mkv"
     
     # Make sure output folder exists
     os.makedirs(outputFolder, exist_ok=True)
     
-    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    fourcc = cv2.VideoWriter_fourcc(*'FFV1')
     video = cv2.VideoWriter(
         filename = outputFile,
         fourcc = fourcc,
