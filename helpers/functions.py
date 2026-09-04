@@ -13,12 +13,12 @@ def add_timestamp_to_image(path):
     fontSize = 100
     xPosition = 50
     yPosition = 2320
-    
+
     # Values for black box behind / around timestamp
     tintColor = (0, 0, 0)
     transparency = 0.75  # 0=0%, 1=100%
     opacity = int(255 * transparency)
-    
+
     timestamp = str(datetime.fromtimestamp(os.path.getctime(path))).split(".")[0]
 
     img = Image.open(path).convert("RGBA")
@@ -55,8 +55,8 @@ def add_timestamp_to_image(path):
 
 def convert_frames_to_video(frameCount):
     print(f"\n\n{frameCount}\n\n")
-    
-    
+
+
 def touch(path):
     with open(path, 'a'):
         os.utime(path, None)
