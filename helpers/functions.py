@@ -66,7 +66,7 @@ def convert_frames_to_video(frameCount):
     if videoGenerationDebugLevel >= 2: print(f"Generating video file for files {frames[0]} through {frames[-1]}. . .")
 
     frame = cv2.imread(frames[0])
-    height, width, layers = frame.shape
+    height, width = frame.shape
     timestamp = str(datetime.fromtimestamp(os.path.getctime(frames[0]))).split(".")[0]
     foldername, filename = timestamp.split(" ")
     outputFolder = f"./footage/{foldername}"
