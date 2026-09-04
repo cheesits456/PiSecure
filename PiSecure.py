@@ -9,6 +9,8 @@ from helpers.classes import FileCreateHandler
 from helpers.functions import touch
 
 
+print("Loading. . .")
+
 # Clear old frames first
 if debugLevel >= 1: print("Clearing old frames. . .")
 for file in os.listdir("./framebuffer"):
