@@ -72,7 +72,7 @@ def convert_frames_to_video(frameCount):
     outputFile = f"{outputFolder}/{filename}.mp4"
     
     # Make sure output folder exists
-    os.makedirs(os.path.dirname(outputFolder), exist_ok=True)
+    os.makedirs(outputFolder, exist_ok=True)
     
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     video = cv2.VideoWriter(
