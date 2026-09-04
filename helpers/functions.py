@@ -10,7 +10,7 @@ from config import batchSize, timestampDebugLevel, videoGenerationDebugLevel
 
 def add_timestamp_to_image(path):
     time.sleep(0.02)
-    if timestampDebugLevel >= 3: print(f"Adding timestamp to {path}. . .")
+    if timestampDebugLevel >= 2: print(f"Adding timestamp to {path}. . .")
 
     # Values for timestamp in bottom corner
     fontFile = "./assets/FiraCodeMono.ttf"
@@ -55,7 +55,7 @@ def add_timestamp_to_image(path):
     )
     img.resize((800, 600))
     img.save(path)
-    if timestampDebugLevel >= 2: print(f"Timestamp added to {path}!")
+    if timestampDebugLevel >= 1: print(f"Timestamp added to {path}!")
 
 
 def convert_frames_to_video(frameCount):
