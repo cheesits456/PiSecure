@@ -2,7 +2,7 @@
 batchSize=5
 
 # Adjust how many debug messages get printed, higher number = more messages, set to 0 to silence most logs
-frameCaptureDebugLevel=1
+frameCaptureDebugLevel=0
 generalDebugLevel=1
-timestampDebugLevel=1
+timestampDebugLevel=0
 videoGenerationDebugLevel=3
