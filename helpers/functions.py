@@ -66,5 +66,5 @@ def convert_frames_to_video(frameCount):
 
 
 def touch(path):
-    with open(path, 'a'):
+    with open(path, "a"):
         os.utime(path, None)
