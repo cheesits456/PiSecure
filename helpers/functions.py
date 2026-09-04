@@ -51,6 +51,10 @@ def add_timestamp_to_image(path):
     )
     img.save(path)
     print(f"Timestamp added to {path}!")
+
+
+def convert_frames_to_video(frameCount):
+    print(f"\n\n{frameCount}\n\n")
     
     
 def touch(path):
