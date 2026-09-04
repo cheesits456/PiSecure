@@ -1,5 +1,6 @@
 import os
 import subprocess
+import time
 
 from watchdog.observers import Observer
 
@@ -25,6 +26,9 @@ observer = Observer()
 observer.schedule(event_handler, path='./framebuffer/', recursive=False)
 observer.start()
 
-input("Press 'Enter' to stop\n")
+time.sleep(0.1)  # Small delay so that 'generating frames' message gets printed before the below message
+print("+-----------------------+")
+input("| Press 'Enter' to stop |\n")
+print("+-----------------------+")
 
 touch("./stopFrameGenerator")
