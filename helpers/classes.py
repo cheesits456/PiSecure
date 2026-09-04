@@ -12,6 +12,6 @@ class FileCreateHandler(FileSystemEventHandler):
 
             # The variable event.src_path == './framebuffer/n.jpeg', where 'n' is the frame number
             frameNumber = int(event.src_path.split("/")[2].split(".")[0])
-            if not frameNumber % 10:
+            if frameNumber % 10 == 0:
                 executor.submit(print, "10 images captured!")
                 
