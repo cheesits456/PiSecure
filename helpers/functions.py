@@ -71,7 +71,12 @@ def convert_frames_to_video(frameCount):
     outputFile = f"./footage/{foldername}/{filename}.mp4"
     
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-    video = cv2.VideoWriter(filename=outputFile, fourcc=fourcc, fps=1, frameSize=(width, height))
+    video = cv2.VideoWriter(
+        filename = outputFile,
+        fourcc = fourcc,
+        fps = 1,
+        frameSize = (width, height)
+    )
     
     for imagePath in frames:
         if videoGenerationDebugLevel >= 3: print(f"Adding {imagePath} to {outputFile}. . .")
