@@ -4,6 +4,8 @@ import time
 from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont
 
+from config import batchSize
+
 
 def add_timestamp_to_image(path):
     time.sleep(0.02)
