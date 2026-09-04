@@ -1,3 +1,4 @@
+import cv2
 import os
 import time
 
@@ -56,7 +57,11 @@ def add_timestamp_to_image(path):
 
 
 def convert_frames_to_video(frameCount):
-    print(f"\n\n{frameCount}\n\n")
+    frames = []
+    for frame in range(frameCount - batchSize, frameCount):
+        frames.append(f"./framebuffer/{frame + 1}.jpeg")
+    print(frames)
+        
 
 
 def touch(path):
