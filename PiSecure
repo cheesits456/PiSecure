@@ -6,7 +6,7 @@ echo "------------------------------------------------------------"
 echo
 git fetch --all
 git reset --hard origin/main
-chmod +x helpers/captureframe.sh helpers/framegenerator.sh PiSecure
+chmod +x ./helpers/captureframe.sh ./helpers/framegenerator.sh ./PiSecure ./stop
 echo
 echo "------------------------------------------------------------"
 echo "                  Running main script file                  "
