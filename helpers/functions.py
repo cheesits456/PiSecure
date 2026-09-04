@@ -70,7 +70,7 @@ def convert_frames_to_video(frameCount):
     timestamp = str(datetime.fromtimestamp(os.path.getctime(frames[0]))).split(".")[0]
     foldername, filename = timestamp.split(" ")
     outputFolder = f"./footage/{foldername}"
-    outputFile = f"{outputFolder}/{filename}.avi"
+    outputFile = f"{outputFolder}/{filename}.mp4"
     
     # Make sure output folder exists
     os.makedirs(outputFolder, exist_ok=True)
