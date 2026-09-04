@@ -9,7 +9,6 @@ load_dotenv()
 TOKEN = os.environ["botToken"]
 
 intents = discord.Intents.default()
-intents.message_content = True
 
 client = commands.Bot(command_prefix="!", intents=intents)
 
