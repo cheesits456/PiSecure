@@ -5,7 +5,7 @@ import time
 from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont
 
-from config import batchSize, timestampDebugLevel
+from config import batchSize, timestampDebugLevel, videoGenerationDebugLevel
 
 
 def add_timestamp_to_image(path):
@@ -61,8 +61,26 @@ def convert_frames_to_video(frameCount):
     frames = []
     for frame in range(frameCount - batchSize, frameCount):
         frames.append(f"./framebuffer/{frame + 1}.jpeg")
-    print(frames)
         
+    if videoGenerationDebugLevel >= 2: print(f"Generating video file for files {frames[0]} through {frames[-1]}. . .")
+
+    frame = cv2.imread(frames[0])
+    height, width, layers = frame.shape
+    timestamp = str(datetime.fromtimestamp(os.path.getctime(frames[0]))).split(".")[0]
+    foldername, filename = timestamp.split(" ")
+    outputFile = f"./footage/{foldername}/{filename}.mp4"
+    
+    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    video = cv2.VideoWriter(filename=outputFile, fourcc=fourcc, fps=1, frameSize=(width, height))
+    
+    for imagePath in frames:
+        if videoGenerationDebugLevel >= 3: print(f"Adding {imagePath} to {outputFile}. . .")
+        video.write(cv2.imread(imagePath))
+    
+    cv2.destroyAllWindows()
+    video.release()
+        
+    if videoGenerationDebugLevel >= 1: print(f"Generated video file for files {frames[0]} through {frames[-1]}!")
 
 
 def touch(path):
