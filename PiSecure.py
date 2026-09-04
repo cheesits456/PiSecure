@@ -19,7 +19,7 @@ subprocess.run(
     shell = True
 )
 
-# Observe ./framebuffer/ directory for newly created files
+# Observe ./framebuffer directory for newly created files
 event_handler = FileCreateHandler()
 observer = Observer()
 observer.schedule(event_handler, path='./framebuffer/', recursive=False)
