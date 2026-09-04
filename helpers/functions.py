@@ -20,7 +20,7 @@ def add_timestamp_to_image(path):
 
     # Values for black box behind / around timestamp
     tintColor = (0, 0, 0)
-    transparency = 0.75  # 0=0%, 1=100%
+    transparency = 0.5  # 0=0%, 1=100%
     opacity = int(255 * transparency)
 
     timestamp = str(datetime.fromtimestamp(os.path.getctime(path))).split(".")[0]
