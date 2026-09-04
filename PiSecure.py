@@ -12,7 +12,8 @@ from helpers.functions import touch
 print("Clearing old frames. . .")
 for file in os.listdir("./framebuffer"):
     os.remove(f"./framebuffer/{file}")
-os.remove("./stopFrameGenerator")
+if os.path.isfile("./stopFrameGenerator"):
+    os.remove("./stopFrameGenerator")
 print("Done!")
 
 subprocess.run(
