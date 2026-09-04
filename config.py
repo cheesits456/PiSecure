@@ -2,4 +2,4 @@
 batchSize=5
 
 # Adjust how many debug messages get printed, higher number = more messages, set to 0 to silence most logs
-debugLevel=1
+debugLevel=0
