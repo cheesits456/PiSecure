@@ -9,7 +9,7 @@ def add_timestamp_to_image(path):
     time.sleep(0.02)
 
     # Values for timestamp in bottom corner
-    fontFile = "./FiraCodeMono.ttf"
+    fontFile = "./assets/FiraCodeMono.ttf"
     fontSize = 100
     xPosition = 50
     yPosition = 2320
