@@ -53,7 +53,7 @@ def add_timestamp_to_image(path):
         text = timestamp,
         xy = (xPosition, yPosition),
     )
-    img.resize((800, 600))
+    img.resize((800, 600), resample=Image.NEAREST)
     img.save(path)
     if timestampDebugLevel >= 1: print(f"Timestamp added to {path}!")
 
