@@ -7,7 +7,6 @@ from PIL import Image, ImageDraw, ImageFont
 
 def add_timestamp_to_image(path):
     time.sleep(0.02)
-    print(f"Adding timestamp to {path}")
 
     # Values for timestamp in bottom corner
     fontFile = "./FiraCodeMono.ttf"
