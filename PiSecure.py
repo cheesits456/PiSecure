@@ -6,9 +6,6 @@ from watchdog.observers import Observer
 
 from helpers.classes import FileCreateHandler
 from helpers.functions import touch
-from test import myvar
-
-print(myvar)
 
 
 # Clear old frames first
