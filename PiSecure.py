@@ -4,17 +4,18 @@ import time
 
 from watchdog.observers import Observer
 
+from config import debugLevel
 from helpers.classes import FileCreateHandler
 from helpers.functions import touch
 
 
 # Clear old frames first
-print("Clearing old frames. . .")
+if debugLevel >= 1: print("Clearing old frames. . .")
 for file in os.listdir("./framebuffer"):
     os.remove(f"./framebuffer/{file}")
 if os.path.isfile("./stopFrameGenerator"):
     os.remove("./stopFrameGenerator")
-print("Done!")
+if debugLevel >= 1: print("Done!")
 
 subprocess.run(
     args = "./helpers/framegenerator.sh &",
