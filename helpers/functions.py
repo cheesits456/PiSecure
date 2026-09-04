@@ -68,7 +68,11 @@ def convert_frames_to_video(frameCount):
     height, width, layers = frame.shape
     timestamp = str(datetime.fromtimestamp(os.path.getctime(frames[0]))).split(".")[0]
     foldername, filename = timestamp.split(" ")
-    outputFile = f"./footage/{foldername}/{filename}.mp4"
+    outputFolder = f"./footage/{foldername}"
+    outputFile = f"{outputFolder}/{filename}.mp4"
+    
+    # Make sure output folder exists
+    os.makedirs(os.path.dirname(outputFolder), exist_ok=True)
     
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     video = cv2.VideoWriter(
