@@ -27,8 +27,13 @@ observer.schedule(event_handler, path='./framebuffer/', recursive=False)
 observer.start()
 
 time.sleep(0.1)  # Small delay so that 'generating frames' message gets printed before the below message
-print("+-----------------------+")
-input("| Press 'Enter' to stop |\n")
-print("+-----------------------+")
+input("\n".join([
+    "",
+    "+-----------------------+",
+    "| Press 'Enter' to stop |",
+    "+-----------------------+",
+    "",
+    ""
+]))
 
 touch("./stopFrameGenerator")
