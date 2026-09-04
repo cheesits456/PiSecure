@@ -5,4 +5,4 @@ batchSize=60
 frameCaptureDebugLevel=2
 generalDebugLevel=1
 timestampDebugLevel=0
-videoGenerationDebugLevel=1
+videoGenerationDebugLevel=3
