@@ -66,7 +66,7 @@ async def list(interaction: discord.Interaction, folder: str) -> None:
                 "│     |",
                 "│     v",
                 "│",
-                f"└── {result[-1]}"
+                f"└── {result[-1]}",
                 "",
                 f"1 directory, {fileCount} file{"" if fileCount == 1 else "s"}"
             ])
