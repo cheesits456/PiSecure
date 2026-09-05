@@ -50,8 +50,13 @@ async def list(interaction: discord.Interaction, folder: str) -> None:
     match folder:
         case "framebuffer":
             result = result.split("\n")
+            fileCount = len(res.stdout.split("\n")) - 1
             result.sort(key=sort_frame_list_by_number)
-            result = f"└── {result[1]} -> {result[-1]}"
+            result = "\n".join([
+                f"└── {result[1]} -> {result[-1]}",
+                "",
+                f"1 directory, {fileCount} file{"" if fileCount == 1 else "s"}"
+            ])
         case "footage":
             result = result.split("\n",1)[1].split("\n")
             lastLine = result[-2].split(" ")
