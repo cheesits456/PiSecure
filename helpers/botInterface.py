@@ -35,7 +35,7 @@ async def on_ready() -> None:
 
 
 
-@client.tree.command(name="List", description="List all files in the specified directory in a fancy file tree")
+@client.tree.command(name="list", description="List all files in the specified directory in a fancy file tree")
 @app_commands.choices(folder=[
     app_commands.Choice(name="Framebuffer", value="framebuffer"),
     app_commands.Choice(name="Footage", value="footage")
@@ -53,7 +53,7 @@ async def list(interaction: discord.Interaction, folder: str) -> None:
 
 
 
-@client.tree.command(name="Still", description="Upload the most recently captured frame to the current channel")
+@client.tree.command(name="still", description="Upload the most recently captured frame to the current channel")
 async def still(interaction: discord.Interaction) -> None:
     frameList = os.listdir("./framebuffer")
     frameList.sort(key=sort_frame_list_by_number)
