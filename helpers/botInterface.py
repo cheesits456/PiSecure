@@ -28,6 +28,7 @@ class Bot(commands.Bot):
 client = Bot(command_prefix="/", intents=intents)
 
 
+
 @client.event
 async def on_ready() -> None:
     print(f"Logged in as {client.user} ({client.user.id})")
