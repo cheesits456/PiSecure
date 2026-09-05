@@ -35,7 +35,7 @@ async def on_ready() -> None:
 
 
 
-@client.tree.command(name="list", description="List all files in the specified directory in a fancy file tree")
+@client.tree.command(name="list", description="List all files in the specified directory in a fancy file-tree")
 @app_commands.choices(folder=[
     app_commands.Choice(name="Framebuffer", value="framebuffer"),
     app_commands.Choice(name="Footage", value="footage")
