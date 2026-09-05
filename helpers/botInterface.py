@@ -49,9 +49,9 @@ async def list(interaction: discord.Interaction, folder: str) -> None:
         text = True
     )
     result = res.stdout.split("\n",1)[1].split("\n")
-    lastLine = result[-1].split(" ")
+    lastLine = result[-2].split(" ")
     lastLine[0] = str(int(lastLine[0]) - 1)
-    result[-1] = " ".join(lastLine)
+    result[-2] = " ".join(lastLine)
     tree = "\n".join(result)
     await interaction.response.send_message(f"```ini\n[{folder}]\n{tree}```")
 
