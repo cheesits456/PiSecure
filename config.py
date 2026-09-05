@@ -2,6 +2,10 @@
 batchSize=300
 
 
+# ID for the Discord server the bot is in
+serverID="1545545659493654548"
+
+
 ## Adjust how many debug messages get printed
 # General:
 # 0 = none
