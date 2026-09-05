@@ -46,7 +46,7 @@ async def list(interaction: discord.Interaction, folder: str) -> None:
         capture_output = True, # Python >= 3.7 only
         text = True
     )
-    await interaction.response.send_message(f"```{result.stdout}```")
+    await interaction.response.send_message(f"```{folder}\n{result.stdout}```")
 
 @client.tree.command(name="still", description="Upload the most recently captured frame to the current channel")
 async def still(interaction: discord.Interaction) -> None:
