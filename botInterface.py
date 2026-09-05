@@ -39,7 +39,7 @@ async def on_ready() -> None:
 ])
 @app_commands.describe(folder="Which folder to list the contents of")
 async def list(interaction: discord.Interaction, folder: str) -> None:
-    command = f"ls {folder}" if folder == "framebuffer" else f"tree {folder}"
+    command = f"ls {folder}" if folder == "framebuffer" else f"tree -h {folder}"
     res = subprocess.run(
         args = command,
         executable = "/bin/bash",
