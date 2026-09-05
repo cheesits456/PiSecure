@@ -37,7 +37,7 @@ async def list(interaction: discord.Interaction) -> None:
 
 
 @client.tree.command()
-@app_commands.choices(color=[
+@app_commands.choices(folder=[
     app_commands.Choice(name="Red", value="red"),
     app_commands.Choice(name="Green", value="green"),
     app_commands.Choice(name="Blue", value="blue")
