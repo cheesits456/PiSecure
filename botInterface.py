@@ -86,13 +86,14 @@ async def still(interaction: discord.Interaction) -> None:
 @client.tree.command(name="upload", description="Upload the specified file to the current channel")
 @app_commands.describe(file="Which file to upload")
 async def upload(interaction: discord.Interaction, file: str) -> None:
+    interaction.response.send_message("Loading. . .")
     path = None
     if os.path.exists(file): path = file
     elif os.path.exists(f"framebuffer/{file}"): path = f"framebuffer/{file}"
     elif os.path.exists(f"footage/{file}"): path = f"footage/{file}"
     
-    if path: await interaction.response.send_message(file=discord.File(path))
-    else: await interaction.response.send_message("Could not find specified file")
+    if path: await interaction.response.edit_message(file=discord.File(path))
+    else: await interaction.response.edit_message("Could not find specified file")
 
 
 
