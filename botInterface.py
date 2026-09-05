@@ -38,19 +38,27 @@ async def on_ready() -> None:
     app_commands.Choice(name="Footage", value="footage")
 ])
 async def list(interaction: discord.Interaction, folder: str) -> None:
+    command = f"ls {folder}" if folder == "framebuffer" else f"tree {folder}"
     res = subprocess.run(
-        args = f"tree {folder}",
+        args = command,
         executable = "/bin/bash",
         shell = True,
         capture_output = True,
         text = True
     )
-    result = res.stdout.split("\n",1)[1].split("\n")
-    lastLine = result[-2].split(" ")
-    lastLine[0] = str(int(lastLine[0]) - 1)
-    result[-2] = " ".join(lastLine)
-    tree = "\n".join(result)
-    await interaction.response.send_message(f"```ini\n[{folder}]\n{tree}```")
+    result = res.stdout
+    match folder:
+        case "framebuffer":
+            result = result.split("\n")
+            result.sort(sort_frame_list_by_number)
+            result = f"└── {result[0]} -> {result[-1]}"
+        case "footage":
+            result = result.split("\n",1)[1].split("\n")
+            lastLine = result[-2].split(" ")
+            lastLine[0] = str(int(lastLine[0]) - 1)
+            result[-2] = " ".join(lastLine)
+            result = "\n".join(result)
+    await interaction.response.send_message(f"```ini\n[{folder}]\n{result}```")
 
 
 
