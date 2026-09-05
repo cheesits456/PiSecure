@@ -33,6 +33,7 @@ async def on_ready() -> None:
     print(f"Logged in as {client.user} ({client.user.id})")
 
 
+
 @client.tree.command()
 @app_commands.choices(folder=[
     app_commands.Choice(name="Framebuffer", value="framebuffer"),
@@ -43,12 +44,13 @@ async def list(interaction: discord.Interaction, folder: str) -> None:
         args = f"tree {folder}",
         executable = "/bin/bash",
         shell = True,
-        capture_output = True, # Python >= 3.7 only
+        capture_output = True,
         text = True
     )
     tree = result.stdout.split("\n",1)[1]
-
     await interaction.response.send_message(f"```ini\n[{folder}]\n{tree}```")
+
+
 
 @client.tree.command(name="still", description="Upload the most recently captured frame to the current channel")
 async def still(interaction: discord.Interaction) -> None:
@@ -57,5 +59,7 @@ async def still(interaction: discord.Interaction) -> None:
     # Uploading the second-to-last frame because the most recent one might still be going through post-processing
     filePath = f"./framebuffer/{frameList[-2]}"
     await interaction.response.send_message(file=discord.File(filePath))
-    
+
+
+
 client.run(TOKEN)
