@@ -6,7 +6,7 @@ from watchdog.observers import Observer
 
 from config import generalDebugLevel
 from helpers.classes import FileCreateHandler
-from helpers.functions import convert_frames_to_video, touch
+from helpers.functions import convert_frames_to_video, sort_frame_list_by_number, touch
 
 
 # Remove 'stop' indicator file first
@@ -16,7 +16,15 @@ if os.path.isfile("./stopFrameGenerator"):
 # Patch any old frames into new video file
 if generalDebugLevel >= 1: print("Patching old frames into video file. . .")
 oldFrames = os.listdir("./framebuffer")
-if len(oldFrames): convert_frames_to_video(len(oldFrames), len(oldFrames))
+oldFrames.sort(key=sort_frame_list_by_number)
+frames = {
+    "first": int(oldFrames[0].split(".")[0]),
+    "last": int(oldFrames[-1].split(".")[0])
+}
+if len(oldFrames): convert_frames_to_video(
+    frameCount = frames["last"],
+    batchSize = frames["last"] - frames["first"] + 1
+)
 
 subprocess.run(
     args = "./helpers/framegenerator.sh &",
