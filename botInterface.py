@@ -51,7 +51,7 @@ async def list(interaction: discord.Interaction, folder: str) -> None:
         case "framebuffer":
             result = result.split("\n")
             result.sort(key=sort_frame_list_by_number)
-            result = f"└── {result[0]} -> {result[-1]}"
+            result = f"└── {result[1]} -> {result[-1]}"
         case "footage":
             result = result.split("\n",1)[1].split("\n")
             lastLine = result[-2].split(" ")
