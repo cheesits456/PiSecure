@@ -1,7 +1,6 @@
 import discord
 import os
 
-from discord import app_commands
 from discord.ext import commands
 from dotenv import load_dotenv
 
@@ -30,8 +29,10 @@ async def list(interaction: discord.Interaction) -> None:
     message = "_ _"
     await interaction.response.send_message(message)
 
-@client.tree.command(name="still", description="Capture a still image and upload it to this channel")
+@client.tree.command(name="still", description="Upload the most recently captured frame to the current channel")
 async def still(interaction: discord.Interaction) -> None:
-    await interaction.response.send_message(message)
+    files = os.listdir("../framebuffer")
+    print(files)
+    # await interaction.response.send_message(file=discord.File(""))
     
 client.run(TOKEN)
