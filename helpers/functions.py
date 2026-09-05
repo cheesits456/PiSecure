@@ -93,7 +93,7 @@ def convert_frames_to_video(frameCount: int, batchSize=batchSize):
     cv2.destroyAllWindows()
     video.release()
         
-    if videoGenerationDebugLevel >= 1: print(f"Generated video file for files {frames[0]} through {frames[-1]}!")
+    if videoGenerationDebugLevel >= 1: print(f"Generated video file {outputFile} for files {frames[0]} through {frames[-1]}!")
     
     if videoGenerationDebugLevel >= 2: print("Deleting unneeded frames. . .")
     for file in frames:
