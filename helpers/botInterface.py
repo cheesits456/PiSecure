@@ -1,6 +1,7 @@
 import discord
 import os
 
+from discord import app_commands
 from discord.ext import commands
 from dotenv import load_dotenv
 
@@ -34,10 +35,21 @@ async def list(interaction: discord.Interaction) -> None:
     message = "_ _"
     await interaction.response.send_message(message)
 
+
+@client.tree.command()
+@app_commands.choices(color=[
+    app_commands.Choice(name="Red", value="red"),
+    app_commands.Choice(name="Green", value="green"),
+    app_commands.Choice(name="Blue", value="blue")
+])
+async def echo(interaction: discord.Interaction, folder: str) -> None:
+    await interaction.response.send_message(folder)
+
 @client.tree.command(name="still", description="Upload the most recently captured frame to the current channel")
 async def still(interaction: discord.Interaction) -> None:
     frameList = os.listdir("./framebuffer")
     frameList.sort(key=sort_frame_list_by_number)
+    # Uploading the second-to-last frame because the most recent one might still be going through post-processing
     filePath = f"./framebuffer/{frameList[-2]}"
     await interaction.response.send_message(file=discord.File(filePath))
     
