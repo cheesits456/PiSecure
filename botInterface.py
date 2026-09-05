@@ -37,6 +37,7 @@ async def on_ready() -> None:
     app_commands.Choice(name="Framebuffer", value="framebuffer"),
     app_commands.Choice(name="Footage", value="footage")
 ])
+@app_commands.describe(folder="Which folder to list the contents of")
 async def list(interaction: discord.Interaction, folder: str) -> None:
     command = f"ls {folder}" if folder == "framebuffer" else f"tree {folder}"
     res = subprocess.run(
@@ -79,6 +80,13 @@ async def still(interaction: discord.Interaction) -> None:
     # Uploading the second-to-last frame because the most recent one might still be going through post-processing
     filePath = f"./framebuffer/{frameList[-2]}"
     await interaction.response.send_message(file=discord.File(filePath))
+
+
+
+@client.tree.command(name="upload", description="Upload the specified file to the current channel")
+@app_commands.describe(file="Which file to upload")
+async def upload(interaction: discord.Interaction, file: str) -> None:
+    await interaction.response.send_message(file)
 
 
 
