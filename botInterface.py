@@ -86,7 +86,7 @@ async def still(interaction: discord.Interaction) -> None:
 @client.tree.command(name="upload", description="Upload the specified file to the current channel")
 @app_commands.describe(file="Which file to upload")
 async def upload(interaction: discord.Interaction, file: str) -> None:
-    interaction.response.send_message("Loading. . .")
+    await interaction.response.send_message("Loading. . .")
     path = None
     if os.path.exists(file): path = file
     elif os.path.exists(f"framebuffer/{file}"): path = f"framebuffer/{file}"
