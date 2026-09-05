@@ -4,6 +4,11 @@ import os
 from discord.ext import commands
 from dotenv import load_dotenv
 
+
+def sort_frame_list_by_number(filename):
+    return int(filename.split(".")[0])
+
+
 load_dotenv()
 
 TOKEN = os.environ["botToken"]
@@ -32,7 +37,7 @@ async def list(interaction: discord.Interaction) -> None:
 @client.tree.command(name="still", description="Upload the most recently captured frame to the current channel")
 async def still(interaction: discord.Interaction) -> None:
     files = os.listdir("./framebuffer")
-    files.sort()
+    files.sort(key=sort_frame_list_by_number)
     print(files)
     # await interaction.response.send_message(file=discord.File(""))
     
