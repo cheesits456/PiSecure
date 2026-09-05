@@ -14,7 +14,7 @@ if generalDebugLevel >= 1: print("Patching old frames into video file. . .")
 oldFrames = os.listdir("./framebuffer")
 convert_frames_to_video(len(oldFrames), len(oldFrames))
 
-Clear old frames
+# Clear old frames
 if generalDebugLevel >= 1: print("Clearing old frames. . .")
 for file in oldFrames:
     os.remove(f"./framebuffer/{file}")
