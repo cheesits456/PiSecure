@@ -39,7 +39,7 @@ async def on_ready() -> None:
 ])
 @app_commands.describe(folder="Which folder to list the contents of")
 async def list(interaction: discord.Interaction, folder: str) -> None:
-    command = f"ls {folder}" if folder == "framebuffer" else f"tree -h {folder}"
+    command = f"ls {folder}" if folder == "framebuffer" else f"tree --si {folder}"
     res = subprocess.run(
         args = command,
         executable = "/bin/bash",
@@ -86,7 +86,13 @@ async def still(interaction: discord.Interaction) -> None:
 @client.tree.command(name="upload", description="Upload the specified file to the current channel")
 @app_commands.describe(file="Which file to upload")
 async def upload(interaction: discord.Interaction, file: str) -> None:
-    await interaction.response.send_message(file)
+    path = None
+    if os.path.exists(file): path = file
+    elif os.path.exists(f"framebuffer/{file}"): path = f"framebuffer/{file}"
+    elif os.path.exists(f"footage/{file}"): path = f"footage/{file}"
+    
+    if path: await interaction.response.send_message(file=discord.File(path))
+    else: await interaction.response.send_message("Could not find specified file")
 
 
 
