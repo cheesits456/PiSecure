@@ -49,7 +49,7 @@ async def list(interaction: discord.Interaction, folder: str) -> None:
         text = True
     )
     result = res.stdout.split("\n",1)[1].split("\n")
-    lastLine = lastLine.split(" ")
+    lastLine = result[-1].split(" ")
     lastLine[0] = str(int(lastLine [0]) - 1)
     result[-1] = " ".join(lastLine)
     tree = "\n".join(result)
