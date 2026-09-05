@@ -13,4 +13,5 @@ echo "                  Running main script file                  "
 echo "------------------------------------------------------------"
 echo
 echo "Loading. . ."
+python "./helpers/botInterface.py" &
 python PiSecure.py
