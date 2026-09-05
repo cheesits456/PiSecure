@@ -23,4 +23,4 @@ timestampDebugLevel=0
 # 1 = print after each video file finishes generating
 # 2 = everything prior plus print before generating each video file
 # 3 = everything prior plus print when adding each frame to the in-progress video file
-videoGenerationDebugLevel=2
+videoGenerationDebugLevel=3
