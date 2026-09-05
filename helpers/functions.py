@@ -100,6 +100,11 @@ def convert_frames_to_video(frameCount: int, batchSize=batchSize):
         if os.path.exists(file): os.remove(file)
         if videoGenerationDebugLevel >= 3: print(f"File {file} deleted!")
     if videoGenerationDebugLevel >= 1: print("Unneeded frames deleted!")
+
+
+
+def sort_frame_list_by_number(filename):
+    return int(filename.split(".")[0])
     
 
 
