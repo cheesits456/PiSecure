@@ -50,16 +50,8 @@ async def list(interaction: discord.Interaction, folder: str) -> None:
     match folder:
         case "framebuffer":
             result = result.split("\n")
-            fileCount = len(res.stdout.split("\n"))
+            fileCount = len(res.stdout.split("\n")) - 1
             result.sort(key=sort_frame_list_by_number)
-            
-# ├── 1.jpeg
-# │
-# │     |
-# │     v
-# │
-# └── 527.jpeg
-            
             result = "\n".join([
                 f"├── {result[1]}",
                 "│",
