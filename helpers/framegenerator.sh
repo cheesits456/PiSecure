@@ -13,4 +13,5 @@ while [ ! -f "./stopFrameGenerator" ]; do
 	[[ $frameCaptureDebugLevel -ge 2 ]] && echo "Frame ${frameNumber} captured!"
 	sleep 1
 done
+pkill python
 rm "./stopFrameGenerator"
