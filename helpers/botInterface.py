@@ -38,15 +38,15 @@ async def on_ready() -> None:
     app_commands.Choice(name="Framebuffer", value="framebuffer"),
     app_commands.Choice(name="Footage", value="footage")
 ])
-async def echo(interaction: discord.Interaction, folder: str) -> None:
-    tree = subprocess.run(
+async def list(interaction: discord.Interaction, folder: str) -> None:
+    result = subprocess.run(
         args = f"tree {folder}",
         executable = "/bin/bash",
         shell = True,
         capture_output = True, # Python >= 3.7 only
         text = True
     )
-    await interaction.response.send_message(f"```{tree}```")
+    await interaction.response.send_message(f"```{result.stdout}```")
 
 @client.tree.command(name="still", description="Upload the most recently captured frame to the current channel")
 async def still(interaction: discord.Interaction) -> None:
