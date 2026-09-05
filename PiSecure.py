@@ -10,6 +10,7 @@ from helpers.functions import convert_frames_to_video, touch
 
 
 # Patch any old frames into new video file first
+if generalDebugLevel >= 1: print("Patching old frames into video file. . .")
 oldFrames = os.listdir("./framebuffer")
 convert_frames_to_video(len(oldFrames), len(oldFrames))
 
