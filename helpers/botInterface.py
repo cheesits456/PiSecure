@@ -41,14 +41,18 @@ async def on_ready() -> None:
     app_commands.Choice(name="Footage", value="footage")
 ])
 async def list(interaction: discord.Interaction, folder: str) -> None:
-    result = subprocess.run(
+    res = subprocess.run(
         args = f"tree {folder}",
         executable = "/bin/bash",
         shell = True,
         capture_output = True,
         text = True
     )
-    tree = result.stdout.split("\n",1)[1]
+    result = res.stdout.split("\n",1)[1].split("\n")
+    lastLine = lastLine.split(" ")
+    lastLine[0] = str(int(lastLine [0]) - 1)
+    result[-1] = " ".join(lastLine)
+    tree = "\n".join(result)
     await interaction.response.send_message(f"```ini\n[{folder}]\n{tree}```")
 
 
