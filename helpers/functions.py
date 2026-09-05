@@ -104,6 +104,7 @@ def convert_frames_to_video(frameCount: int, batchSize=batchSize):
 
 
 def sort_frame_list_by_number(filename):
+    if filename == "": return 0
     return int(filename.split(".")[0])
     
 
