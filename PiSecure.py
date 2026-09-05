@@ -6,16 +6,20 @@ from watchdog.observers import Observer
 
 from config import generalDebugLevel
 from helpers.classes import FileCreateHandler
-from helpers.functions import touch
+from helpers.functions import convert_frames_to_video, touch
 
 
-# Clear old frames first
-if generalDebugLevel >= 1: print("Clearing old frames. . .")
-for file in os.listdir("./framebuffer"):
-    os.remove(f"./framebuffer/{file}")
-if os.path.isfile("./stopFrameGenerator"):
-    os.remove("./stopFrameGenerator")
-if generalDebugLevel >= 1: print("Done!")
+# Patch any old frames into new video file first
+oldFrames = os.listdir("./framebuffer")
+convert_frames_to_video(len(oldFrames), len(oldFrames))
+
+# Clear old frames
+# if generalDebugLevel >= 1: print("Clearing old frames. . .")
+# for file in oldFrames:
+#     os.remove(f"./framebuffer/{file}")
+# if os.path.isfile("./stopFrameGenerator"):
+#     os.remove("./stopFrameGenerator")
+# if generalDebugLevel >= 1: print("Done!")
 
 subprocess.run(
     args = "./helpers/framegenerator.sh &",
