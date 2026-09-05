@@ -88,7 +88,7 @@ def convert_frames_to_video(frameCount: int, batchSize=batchSize):
     
     for imagePath in frames:
         if videoGenerationDebugLevel >= 3: print(f"Adding {imagePath} to {outputFile}. . .")
-        video.write(cv2.imread(imagePath))
+        if os.path.exists(imagePath): video.write(cv2.imread(imagePath))
     
     cv2.destroyAllWindows()
     video.release()
