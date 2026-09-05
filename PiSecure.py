@@ -16,7 +16,7 @@ if os.path.isfile("./stopFrameGenerator"):
 # Patch any old frames into new video file
 if generalDebugLevel >= 1: print("Patching old frames into video file. . .")
 oldFrames = os.listdir("./framebuffer")
-convert_frames_to_video(len(oldFrames), len(oldFrames))
+if len(oldFrames): convert_frames_to_video(len(oldFrames), len(oldFrames))
 
 # Clear old frames
 if generalDebugLevel >= 1: print("Clearing old frames. . .")
