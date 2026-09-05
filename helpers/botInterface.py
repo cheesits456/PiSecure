@@ -31,7 +31,7 @@ async def list(interaction: discord.Interaction) -> None:
 
 @client.tree.command(name="still", description="Upload the most recently captured frame to the current channel")
 async def still(interaction: discord.Interaction) -> None:
-    files = os.listdir("../framebuffer")
+    files = os.listdir("./framebuffer")
     print(files)
     # await interaction.response.send_message(file=discord.File(""))
     
