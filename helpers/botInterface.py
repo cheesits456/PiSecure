@@ -1,5 +1,6 @@
 import discord
 import os
+import subprocess
 
 from discord import app_commands
 from discord.ext import commands
@@ -26,24 +27,26 @@ class Bot(commands.Bot):
 
 client = Bot(command_prefix="/", intents=intents)
 
+
 @client.event
 async def on_ready() -> None:
     print(f"Logged in as {client.user} ({client.user.id})")
 
-@client.tree.command(name="list", description="List all files in the footage or framebuffer folders")
-async def list(interaction: discord.Interaction) -> None:
-    message = "_ _"
-    await interaction.response.send_message(message)
-
 
 @client.tree.command()
 @app_commands.choices(folder=[
-    app_commands.Choice(name="Red", value="red"),
-    app_commands.Choice(name="Green", value="green"),
-    app_commands.Choice(name="Blue", value="blue")
+    app_commands.Choice(name="Framebuffer", value="framebuffer"),
+    app_commands.Choice(name="Footage", value="footage")
 ])
 async def echo(interaction: discord.Interaction, folder: str) -> None:
-    await interaction.response.send_message(folder)
+    tree = subprocess.run(
+        args = f"tree {folder}",
+        executable = "/bin/bash",
+        shell = True,
+        capture_output = True, # Python >= 3.7 only
+        text = True
+    )
+    await interaction.response.send_message(f"```{tree}```")
 
 @client.tree.command(name="still", description="Upload the most recently captured frame to the current channel")
 async def still(interaction: discord.Interaction) -> None:
