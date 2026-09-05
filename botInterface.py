@@ -93,7 +93,7 @@ async def upload(interaction: discord.Interaction, file: str) -> None:
     elif os.path.exists(f"footage/{file}"): path = f"footage/{file}"
     
     msg = await interaction.original_response()
-    if path: await msg.edit(attachments=[discord.File(path)])
+    if path: await msg.edit(attachments=[discord.File(path)], content="")
     else: await msg.edit("Could not find specified file")
 
 
