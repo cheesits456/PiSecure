@@ -52,8 +52,21 @@ async def list(interaction: discord.Interaction, folder: str) -> None:
             result = result.split("\n")
             fileCount = len(res.stdout.split("\n"))
             result.sort(key=sort_frame_list_by_number)
+            
+# ├── 1.jpeg
+# │
+# │     |
+# │     v
+# │
+# └── 527.jpeg
+            
             result = "\n".join([
-                f"└── {result[1]} -> {result[-1]}",
+                f"├── {result[1]}",
+                "│",
+                "│     |",
+                "│     v",
+                "│",
+                f"└── {result[-1]}"
                 "",
                 f"1 directory, {fileCount} file{"" if fileCount == 1 else "s"}"
             ])
