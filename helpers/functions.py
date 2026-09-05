@@ -10,7 +10,9 @@ from config import batchSize, timestampDebugLevel, videoGenerationDebugLevel
 
 def add_timestamp_to_image(path):
     time.sleep(0.02)
-    if timestampDebugLevel >= 2: print(f"Adding timestamp to {path}. . .")
+    if timestampDebugLevel >= 2:
+        if os.path.isfile(path): print(f"Adding timestamp to {path}. . .")
+        else: return print(f"File {path} doesn't exist, skipping this frame")
 
     # Values for timestamp in bottom corner
     fontFile = "./assets/FiraCodeMono.ttf"
