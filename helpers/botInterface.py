@@ -38,8 +38,6 @@ async def list(interaction: discord.Interaction) -> None:
 async def still(interaction: discord.Interaction) -> None:
     files = os.listdir("./framebuffer")
     files.sort(key=sort_frame_list_by_number)
-    print(files)
-    await interaction.response.send_message(files)
-    # await interaction.response.send_message(file=discord.File(""))
+    await interaction.response.send_message(file=discord.File(files[-1]))
     
 client.run(TOKEN)
