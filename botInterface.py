@@ -68,7 +68,7 @@ async def list(interaction: discord.Interaction, folder: str) -> None:
             lastLine[0] = str(int(lastLine[0]) - 1)
             result[-2] = " ".join(lastLine)
             result = "\n".join(result)
-    await interaction.response.send_message(f"```ini\n[{folder}]\n{result}```")
+    await interaction.response.send_message(f"```js\n'{folder}'\n{result}```")
 
 
 
