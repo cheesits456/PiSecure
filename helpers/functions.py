@@ -26,38 +26,39 @@ def add_timestamp_to_image(path: str):
     opacity = int(255 * transparency)
 
     timestamp = str(datetime.fromtimestamp(os.path.getctime(path))).split(".")[0]
+    try:
+        img = Image.open(path).convert("RGBA")
+        font = ImageFont.truetype(fontFile, fontSize)
 
-    img = Image.open(path).convert("RGBA")
-    font = ImageFont.truetype(fontFile, fontSize)
-
-    # Create blank image with same dimensions as captured image
-    overlay = Image.new(
-        mode = "RGBA",
-        size = img.size,
-        color = tintColor + (0,)
-    )
-    # Draw black rectangle in bottom corner
-    drawOverlay = ImageDraw.Draw(overlay)
-    drawOverlay.rounded_rectangle(
-        corners = (False, True, False, False),
-        fill = tintColor + (opacity,),
-        radius = 50,
-        xy = [(0, 2290), (1250, 2464)],
-    )
-    # Overlay image with rectangle on top of captured image and convert back to RGB
-    img = Image.alpha_composite(img, overlay)
-    img = img.convert("RGB")
-    # Print timestamp in bottom corner on top of black rectangle
-    drawFinal = ImageDraw.Draw(img)
-    drawFinal.text(
-        fill = (255, 255, 255),
-        font = font,
-        text = timestamp,
-        xy = (xPosition, yPosition),
-    )
-    img = img.resize((800, 600), resample=Image.NEAREST)
-    img.save(path)
-    if timestampDebugLevel >= 1: print(f"Timestamp added to {path}!")
+        # Create blank image with same dimensions as captured image
+        overlay = Image.new(
+            mode = "RGBA",
+            size = img.size,
+            color = tintColor + (0,)
+        )
+        # Draw black rectangle in bottom corner
+        drawOverlay = ImageDraw.Draw(overlay)
+        drawOverlay.rounded_rectangle(
+            corners = (False, True, False, False),
+            fill = tintColor + (opacity,),
+            radius = 50,
+            xy = [(0, 2290), (1250, 2464)],
+        )
+        # Overlay image with rectangle on top of captured image and convert back to RGB
+        img = Image.alpha_composite(img, overlay)
+        img = img.convert("RGB")
+        # Print timestamp in bottom corner on top of black rectangle
+        drawFinal = ImageDraw.Draw(img)
+        drawFinal.text(
+            fill = (255, 255, 255),
+            font = font,
+            text = timestamp,
+            xy = (xPosition, yPosition),
+        )
+        img = img.resize((800, 600), resample=Image.NEAREST)
+        img.save(path)
+        if timestampDebugLevel >= 1: print(f"Timestamp added to {path}!")
+    except: None
 
 
 def convert_frames_to_video(frameCount: int, batchSize=batchSize):
