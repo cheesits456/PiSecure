@@ -1,4 +1,5 @@
 #!/bin/env bash
+pkill python
 echo
 echo "------------------------------------------------------------"
 echo "                   Pulling from Git repo                    "
