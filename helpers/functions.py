@@ -8,7 +8,7 @@ from PIL import Image, ImageDraw, ImageFont
 from config import batchSize, timestampDebugLevel, videoGenerationDebugLevel
 
 
-def add_timestamp_to_image(path):
+def add_timestamp_to_image(path: str):
     time.sleep(0.02)
     if timestampDebugLevel >= 2:
         if os.path.isfile(path): print(f"Adding timestamp to {path}. . .")
@@ -60,7 +60,7 @@ def add_timestamp_to_image(path):
     if timestampDebugLevel >= 1: print(f"Timestamp added to {path}!")
 
 
-def convert_frames_to_video(frameCount):
+def convert_frames_to_video(frameCount: int, batchSize=batchSize):
     frames = []
     for frame in range(frameCount - batchSize, frameCount):
         frames.append(f"./framebuffer/{frame + 1}.jpeg")
@@ -95,6 +95,6 @@ def convert_frames_to_video(frameCount):
     if videoGenerationDebugLevel >= 1: print(f"Generated video file for files {frames[0]} through {frames[-1]}!")
 
 
-def touch(path):
+def touch(path: str):
     with open(path, "a"):
         os.utime(path, None)
