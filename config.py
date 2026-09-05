@@ -1,5 +1,5 @@
 # How many frames to use per video file, 1 frame = 1 second
-batchSize=3600
+batchSize=300
 
 
 ## Adjust how many debug messages get printed
