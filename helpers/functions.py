@@ -94,6 +94,13 @@ def convert_frames_to_video(frameCount: int, batchSize=batchSize):
     video.release()
         
     if videoGenerationDebugLevel >= 1: print(f"Generated video file for files {frames[0]} through {frames[-1]}!")
+    
+    if videoGenerationDebugLevel >= 2: print("Deleting unneeded frames. . .")
+    for file in frames:
+        if os.path.exists(file): os.remove(file)
+        if videoGenerationDebugLevel >= 3: print(f"File {file} deleted!")
+    if videoGenerationDebugLevel >= 1: print("Unneeded frames deleted!")
+    
 
 
 def touch(path: str):
