@@ -120,7 +120,7 @@ def split_message(text: str, maxLength=2000, char='\n', prepend="", append=""):
         messages.append("")
         if len(messages[messageNumber]) + len(splitText[i]) + 1 > maxLength:
             messages[messageNumber] += append;
-            messages.append(prepend)
+            messages[messageNumber] = prepend + messages[messageNumber]
             messageNumber += 1
         messages[messageNumber] += (char if (len(messages[messageNumber]) > 0 and messages[messageNumber] != prepend) else "") + splitText[i];
     return messages;
