@@ -117,6 +117,7 @@ def split_message(text: str, maxLength=2000, char='\n', prepend="", append=""):
     messages = [];
     messageNumber = 0;
     for i in range(0, len(splitText)):
+        messages.append("")
         if len(messages[messageNumber]) + len(splitText[i]) + 1 > maxLength:
             messages[messageNumber] += append;
             messages.append(prepend)
