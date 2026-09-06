@@ -116,7 +116,7 @@ def split_message(text: str, maxLength=2000, char='\n', prepend="", append=""):
         if len(chunk) > maxLength: return "Message exceeds the max length and / or contains no or not enough split characters"
     messages = [];
     messageNumber = 0;
-    for i in range(0, splitText.length):
+    for i in range(0, len(splitText)):
         if len(messages[messageNumber]) + len(splitText[i]) + 1 > maxLength:
             messages[messageNumber] += append;
             messages.append(prepend)
