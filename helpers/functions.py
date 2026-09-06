@@ -106,7 +106,24 @@ def convert_frames_to_video(frameCount: int, batchSize=batchSize):
 def sort_frame_list_by_number(filename: str):
     if filename == "": return 0
     return int(filename.split(".")[0])
-    
+
+
+
+def split_message(text: str, maxLength=2000, char='\n', prepend="", append=""):
+    if len(text) <= maxLength: return text
+    splitText = text.split(char)
+    for chunk in splitText:
+        if len(chunk) > maxLength: return "Message exceeds the max length and / or contains no or not enough split characters"
+    messages = [];
+    messageNumber = 0;
+    for i in range(0, splitText.length):
+        if len(messages[messageNumber]) + len(splitText[i]) + 1 > maxLength:
+            messages[messageNumber] += append;
+            messages.append(prepend)
+            messageNumber += 1
+        messages[messageNumber] += (char if (len(messages[messageNumber]) > 0 and messages[messageNumber] != prepend) else "") + splitText[i];
+    return messages;
+
 
 
 def touch(path: str):
