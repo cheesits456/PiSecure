@@ -7,7 +7,7 @@ from discord.ext import commands
 from dotenv import load_dotenv
 
 from config import serverID
-from helpers.functions import sort_frame_list_by_number
+from helpers.functions import sort_frame_list_by_number, split_message
 
 
 load_dotenv()
@@ -69,7 +69,12 @@ async def list(interaction: discord.Interaction, folder: str) -> None:
             lastLine[0] = str(int(lastLine[0]) - 1)
             result[-2] = " ".join(lastLine)
             result = "\n".join(result)
-    await interaction.response.send_message(f"```asc\n'{folder}'\n{result}```")
+    result = f"'{folder}'\n{result}"
+    splitResult = split_message(result, prepend="```asc\n", append="```")
+    await interaction.response.send_message(splitResult[0])
+    if len(splitResult) > 1:
+        for i in range(1, len(splitResult)):
+            await interaction.channel.send(splitResult[i])
 
 
 
