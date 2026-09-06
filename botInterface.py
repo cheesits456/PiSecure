@@ -70,11 +70,11 @@ async def list(interaction: discord.Interaction, folder: str) -> None:
             result[-2] = " ".join(lastLine)
             result = "\n".join(result)
     result = f"'{folder}'\n{result}"
-    splitResult = split_message(result, prepend="```asc\n", append="```")
-    await interaction.response.send_message(splitResult[0])
+    splitResult = split_message(result, maxLength=1990)
+    await interaction.response.send_message(f"```asc\n{splitResult[0]}```")
     if len(splitResult) > 1:
         for i in range(1, len(splitResult)):
-            await interaction.channel.send(splitResult[i])
+            await interaction.channel.send(f"```asc\n{splitResult[i]}```")
 
 
 
