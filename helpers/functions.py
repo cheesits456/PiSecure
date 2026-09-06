@@ -114,14 +114,14 @@ def split_message(text: str, maxLength=2000, char='\n', prepend="", append=""):
     splitText = text.split(char)
     for chunk in splitText:
         if len(chunk) > maxLength: return "Message exceeds the max length and / or contains no or not enough split characters"
-    messages = [];
+    messages = [""];
     messageNumber = 0;
     for i in range(0, len(splitText)):
-        messages.append("")
         if len(messages[messageNumber]) + len(splitText[i]) + 1 > maxLength:
             messages[messageNumber] += append;
             messages[messageNumber] = prepend + messages[messageNumber]
             messageNumber += 1
+            messages.append("")
         messages[messageNumber] += (char if (len(messages[messageNumber]) > 0 and messages[messageNumber] != prepend) else "") + splitText[i];
     return messages;
 
