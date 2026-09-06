@@ -109,7 +109,7 @@ def sort_frame_list_by_number(filename: str):
 
 
 
-def split_message(text: str, maxLength=2000, char='\n', prepend="", append=""):
+def split_message(text: str, maxLength=2000, char="\n", prepend="", append=""):
     if len(text) + len(prepend) + len(append) <= maxLength: return [prepend + text + append]
     splitText = text.split(char)
     for chunk in splitText:
