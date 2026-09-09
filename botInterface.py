@@ -81,6 +81,7 @@ async def list(interaction: discord.Interaction, folder: str) -> None:
 
 @client.tree.command(name="still", description="Upload the most recently captured frame to the current channel")
 async def still(interaction: discord.Interaction) -> None:
+    if interaction.user.id != userID: return await interaction.response.send_message("Invalid user")
     frameList = os.listdir("./framebuffer")
     frameList.sort(key=sort_frame_list_by_number)
     # Uploading the second-to-last frame because the most recent one might still be going through post-processing
@@ -92,6 +93,7 @@ async def still(interaction: discord.Interaction) -> None:
 @client.tree.command(name="upload", description="Upload the specified file to the current channel")
 @app_commands.describe(file="Which file to upload")
 async def upload(interaction: discord.Interaction, file: str) -> None:
+    if interaction.user.id != userID: return await interaction.response.send_message("Invalid user")
     await interaction.response.send_message("Loading. . .")
     path = None
     if os.path.exists(file): path = file
