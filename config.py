@@ -4,7 +4,7 @@ batchSize=1800
 
 # ID for the Discord server the bot is in, and your user ID (this is used to prevent others being able to run commands if they add the bot to their server)
 serverID="1545545659493654548"
-userID="306018440639152128"
+userID=306018440639152128
 
 
 ## Adjust how many debug messages get printed
