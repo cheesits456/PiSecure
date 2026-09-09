@@ -6,7 +6,7 @@ from discord import app_commands
 from discord.ext import commands
 from dotenv import load_dotenv
 
-from config import serverID
+from config import serverID, userID
 from helpers.functions import sort_frame_list_by_number, split_message
 
 
@@ -39,6 +39,7 @@ async def on_ready() -> None:
 ])
 @app_commands.describe(folder="Which folder to list the contents of")
 async def list(interaction: discord.Interaction, folder: str) -> None:
+    if interaction.user.id == userID: return await interaction.response.send_message("Invalid user")
     command = f"ls {folder}" if folder == "framebuffer" else f"tree {folder}"
     res = subprocess.run(
         args = command,
