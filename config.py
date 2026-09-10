@@ -1,3 +1,8 @@
+## +-------------------------------------------------------------------------------------------------------------+
+## | This file is valid as both a python script, as well as a bash script. Do not pad the '=' signs with spaces, |
+## | otherwise it will no longer be a valid bash script, and the program will no longer work                     |
+## +-------------------------------------------------------------------------------------------------------------+
+
 # How many frames to use per video file, 1 frame = 1 second
 batchSize=1800
 
