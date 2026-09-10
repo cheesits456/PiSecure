@@ -89,15 +89,14 @@ async def shell(interaction: discord.Interaction, input: str) -> None:
         capture_output = True,
         executable = "/bin/bash",
         shell = True,
-        stderr = subprocess.STDOUT,
         text = True
     )
-    result = res.stdout
+    result = res.stdout if len(res.stdout) else res.stderr if len(res.stderr) else "No output captured"
     
     splitResult = split_message(result)
     
     msg = await interaction.original_response()
-    await msg.edit(content=f"```{splitResult[0]}```" if len(splitResult[0]) else "No output captured")
+    await msg.edit(content=f"```{splitResult[0]}```")
     
     for i in range(1, len(splitResult)):
         await interaction.channel.send(f"```{splitResult[i]}```")
