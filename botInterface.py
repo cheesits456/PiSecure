@@ -105,7 +105,7 @@ async def shell(interaction: discord.Interaction, input: str) -> None:
             await interaction.channel.send(f"```{splitResult[i]}```")
     
     with ThreadPoolExecutor(max_workers=1) as executor:
-        executor.submit(run_command_and_send_output_to_channel)
+        executor.submit(await run_command_and_send_output_to_channel)
 
 
 
