@@ -86,9 +86,10 @@ async def shell(interaction: discord.Interaction, input: str) -> None:
     await interaction.response.send_message("Running command. . .")
     res = subprocess.run(
         args = input,
+        capture_output = True,
         executable = "/bin/bash",
         shell = True,
-        capture_output = True,
+        stderr = subprocess.STDOUT,
         text = True
     )
     result = res.stdout
@@ -96,7 +97,7 @@ async def shell(interaction: discord.Interaction, input: str) -> None:
     splitResult = split_message(result)
     
     msg = await interaction.original_response()
-    await msg.edit(content=f"```{splitResult[0]}```")
+    await msg.edit(content=f"```{splitResult[0]}```" if len(splitResult[0]) else "No output captured")
     
     for i in range(1, len(splitResult)):
         await interaction.channel.send(f"```{splitResult[i]}```")
