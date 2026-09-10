@@ -103,10 +103,6 @@ def convert_frames_to_video(frameCount: int, batchSize=batchSize):
 
 
 
-sort_frame_list_by_number = lambda filename: 0 if filename == "" else int(filename.split(".")[0])
-
-
-
 def split_message(text: str, maxLength=2000, char="\n", prepend="", append=""):
     if len(text) + len(prepend) + len(append) <= maxLength: return [prepend + text + append]
     splitText = text.split(char)
@@ -128,3 +124,7 @@ def split_message(text: str, maxLength=2000, char="\n", prepend="", append=""):
 def touch(path: str):
     with open(path, "a"):
         os.utime(path, None)
+
+
+
+sort_frame_list_by_number = lambda filename: 0 if filename == "" else int(filename.split(".")[0])
