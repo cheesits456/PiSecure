@@ -32,6 +32,29 @@ async def on_ready() -> None:
 
 
 
+@client.tree.command(name="bash", description="Run a bash command or script and send the output to this channel")
+@app_commands.describe(input="Bash command or script to run")
+async def bash(interaction: discord.Interaction, input: str) -> None:
+    if interaction.user.id != userID: return await interaction.response.send_message("Invalid user")
+    await interaction.response.send_message("Running command. . .")
+    res = subprocess.run(
+        args = input,
+        executable = "/bin/bash",
+        shell = True,
+        capture_output = True,
+        text = True
+    )
+    result = res.stdout
+    
+    splitResult = split_message(result)
+    
+    msg = await interaction.original_response()
+    await msg.edit(content=f"```{splitResult[0]}```")
+    
+    for i in range(1, len(splitResult)):
+        await interaction.channel.send(f"```{splitResult[i]}```")
+
+
 @client.tree.command(name="list", description="List all files in the specified directory in a fancy file-tree")
 @app_commands.choices(folder=[
     app_commands.Choice(name="Framebuffer", value="framebuffer"),
