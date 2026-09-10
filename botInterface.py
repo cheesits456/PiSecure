@@ -2,6 +2,7 @@ import discord
 import os
 import subprocess
 
+from concurrent.futures import ThreadPoolExecutor
 from discord import app_commands
 from discord.ext import commands
 from dotenv import load_dotenv
@@ -84,22 +85,27 @@ async def list(interaction: discord.Interaction, folder: str) -> None:
 async def shell(interaction: discord.Interaction, input: str) -> None:
     if interaction.user.id != userID: return await interaction.response.send_message("Invalid user")
     await interaction.response.send_message("Running command. . .")
-    res = subprocess.run(
-        args = input,
-        capture_output = True,
-        executable = "/bin/bash",
-        shell = True,
-        text = True
-    )
-    result = res.stdout if len(res.stdout) else res.stderr if len(res.stderr) else "No output captured"
     
-    splitResult = split_message(result)
+    async def run_command_and_send_output_to_channel():
+        res = subprocess.run(
+            args = input,
+            capture_output = True,
+            executable = "/bin/bash",
+            shell = True,
+            text = True
+        )
+        result = res.stdout if len(res.stdout) else res.stderr if len(res.stderr) else "No output captured"
+
+        splitResult = split_message(result)
+
+        msg = await interaction.original_response()
+        await msg.edit(content=f"```{splitResult[0]}```")
+
+        for i in range(1, len(splitResult)):
+            await interaction.channel.send(f"```{splitResult[i]}```")
     
-    msg = await interaction.original_response()
-    await msg.edit(content=f"```{splitResult[0]}```")
-    
-    for i in range(1, len(splitResult)):
-        await interaction.channel.send(f"```{splitResult[i]}```")
+    with ThreadPoolExecutor(max_workers=1) as executor:
+        executor.submit(run_command_and_send_output_to_channel)
 
 
 
